@@ -33,11 +33,12 @@
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center font-bold" href="index.html">
+            <a class="sidebar-brand flex flex-row align-items-center justify-content-center font-bold"
+                href="index.html">
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('images/logo2.png') }}" class="img-thumbnail w-50" alt="">
                 </div>
-                <div class="sidebar-brand-text mx-3">OPRNF</div>
+                <div class="sidebar-brand-text  text-center">OPRNF</div>
             </a>
 
             <!-- Divider -->
@@ -55,7 +56,7 @@
 
             <!-- Nav Item - Accueil -->
             <li class="nav-item bg-green-500">
-                <a class="nav-link" href="{{ route('commune.dashboard') }}">
+                <a class="nav-link" href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-fw fa-home"></i>
                     <span class="font-weight-bold">ACCUEIL</span>
                 </a>
@@ -64,7 +65,7 @@
 
             <!-- Nav Item - Cadre -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('cadrage') }}">
+                <a class="nav-link" href="{{ route('admin.cadrage') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span class="font-weight-bold">CADRAGE</span>
                 </a>
@@ -72,7 +73,7 @@
 
             <!-- Nav Item - Hypothèses -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('hypotheses') }}">
+                <a class="nav-link" href="{{ route('admin.hypotheses') }}">
                     <i class="fas fa-fw fa-chart-line"></i>
                     <span class="font-weight-bold">HYPOTHESES</span>
                 </a>
@@ -80,7 +81,7 @@
 
             <!-- Nav Item - Solver -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('solver') }}">
+                <a class="nav-link" href="{{ route('admin.solver') }}">
                     <i class="fas fa-fw fa-cogs"></i>
                     <span class="font-weight-bold">SOLVER</span>
                 </a>
@@ -88,25 +89,16 @@
 
             <!-- Nav Item - Recettes -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('recettes') }}">
+                <a class="nav-link" href="{{ route('admin.recettes') }}">
                     <i class="fas fa-fw fa-utensils"></i>
                     <span class="font-weight-bold">RECETTES</span>
                 </a>
             </li>
-
-            <!-- Nav Item - Formulaire -->
+            <!-- Nav Item - PREVISIONS -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('formulaire') }}">
-                    <i class="fas fa-fw fa-pencil-alt"></i> <!-- Nouvelle icône pour Formulaire -->
-                    <span class="font-weight-bold">FORMULAIRE</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Historiques -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('historiques') }}">
-                    <i class="fas fa-fw fa-history"></i> <!-- Nouvelle icône pour Historiques -->
-                    <span class="font-weight-bold">HISTORIQUES</span>
+                <a class="nav-link" href="{{ route('admin.previsions') }}">
+                    <i class="fas fa-bullseye"></i>
+                    <span class="font-weight-bold text-center">PRÉVISIONS</span>
                 </a>
             </li>
 
@@ -138,6 +130,19 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
+                    <!-- Topbar Search -->
+                    {{-- <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form> --}}
 
                     <p class="font-black text-xs lg:9xl text-green-700"><span class="text-red-500">O</span>UTILS DE
                         <span class="text-red-500">P</span>REVISION DES

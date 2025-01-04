@@ -12,7 +12,7 @@
     <title>OPRNF</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}")}}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -54,7 +54,7 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Accueil -->
-            <li class="nav-item bg-green-500">
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('commune.dashboard') }}">
                     <i class="fas fa-fw fa-home"></i>
                     <span class="font-weight-bold">ACCUEIL</span>
@@ -93,7 +93,6 @@
                     <span class="font-weight-bold">RECETTES</span>
                 </a>
             </li>
-
             <!-- Nav Item - Formulaire -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('formulaire') }}">
@@ -103,13 +102,12 @@
             </li>
 
             <!-- Nav Item - Historiques -->
-            <li class="nav-item">
+            <li class="nav-item bg-green-500">
                 <a class="nav-link" href="{{ route('historiques') }}">
                     <i class="fas fa-fw fa-history"></i> <!-- Nouvelle icône pour Historiques -->
                     <span class="font-weight-bold">HISTORIQUES</span>
                 </a>
             </li>
-
 
 
 
@@ -138,6 +136,19 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
+                    <!-- Topbar Search -->
+                    {{-- <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form> --}}
 
                     <p class="font-black text-xs lg:9xl text-green-700"><span class="text-red-500">O</span>UTILS DE
                         <span class="text-red-500">P</span>REVISION DES
@@ -291,86 +302,58 @@
                     </div>
 
 
-
                     <!-- Content Row -->
                     <div class="row">
-                        <div class="col-12 mb-4">
+                        <div class="col-lg-12 mb-4">
 
-                            <!-- Outil de Prévision des Recettes Non Fiscales -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-green-500 font-bold text-lg">Outil de
-                                        Prévision des Recettes Non
-                                        Fiscales</h6>
+                            <div class="container mt-5">
+                                <h2 class="font-bold mb-4">Historique des Soumissions</h2>
+
+                                <!-- Historique des soumissions -->
+                                <div class="bg-white rounded-md p-4 shadow mb-4">
+                                    <h3 class="font-bold text-lg mb-3">Soumission 1</h3>
+
+                                    <div class="mb-2">
+                                        <strong>Responsable : </strong> John Doe
+                                    </div>
+                                    <div class="mb-2">
+                                        <strong>Fichier : </strong> <a href="#"
+                                            class="text-blue-600">historique_rapport_01.pdf</a>
+                                    </div>
+                                    <div class="mb-2">
+                                        <strong>Observations : </strong> L'historique a été envoyé pour la révision du
+                                        rapport de projet.
+                                    </div>
+                                    <div class="mb-2">
+                                        <strong>Date de soumission : </strong> 4 janvier 2025
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <p>Le <span class="font-black">**Outil de Prévision des Recettes Non Fiscales**
-                                        </span> a été conçu pour aider les
-                                        gestionnaires financiers, les économistes et les décideurs à estimer les
-                                        recettes provenant des différentes sources non fiscales de l'État, telles que
-                                        les droits de timbre, les amendes, les redevances, et autres revenus non liés
-                                        directement à la fiscalité traditionnelle.</p>
 
-                                    <p>Ce système utilise des données historiques et des méthodes statistiques avancées
-                                        pour fournir des prévisions fiables et précises des recettes à venir. Il permet
-                                        ainsi de mieux planifier les budgets et de gérer les finances publiques de
-                                        manière plus efficace. L'outil prend en compte plusieurs variables, y compris
-                                        les tendances économiques, les changements réglementaires, et les performances
-                                        passées, pour offrir des prévisions à court, moyen et long terme.</p>
+                                <div class="bg-white rounded-md p-4 shadow mb-4">
+                                    <h3 class="font-bold text-lg mb-3">Soumission 2</h3>
 
-                                    <h5 class="mt-4 font-weight-bold">Objectifs de l'outil :</h5>
-                                    <ul>
-                                        <li><strong>Estimation précise des recettes non fiscales</strong> : Fournir des
-                                            projections basées sur des données actualisées et des modèles économiques
-                                            fiables.</li>
-                                        <li><strong>Optimisation de la planification budgétaire</strong> : Aider les
-                                            autorités à ajuster les prévisions budgétaires et les plans financiers de
-                                            manière dynamique et précise.</li>
-                                        <li><strong>Amélioration de la gestion des finances publiques</strong> : Offrir
-                                            un outil puissant pour la prise de décision, la planification et la gestion
-                                            des finances de l'État.</li>
-                                    </ul>
-
-                                    <h5 class="mt-4 font-weight-bold">Caractéristiques principales :</h5>
-                                    <ul>
-                                        <li><strong>Interface intuitive</strong> : L'outil dispose d'une interface
-                                            conviviale, permettant une utilisation facile même pour les utilisateurs non
-                                            techniques.</li>
-                                        <li><strong>Actualisation des données en temps réel</strong> : Les données
-                                            utilisées pour les prévisions sont constamment mises à jour pour refléter
-                                            les conditions économiques actuelles.</li>
-                                        <li><strong>Rapports détaillés</strong> : Génération de rapports et de
-                                            graphiques visuels pour une meilleure compréhension des prévisions.</li>
-                                        <li><strong>Prédictions sur différentes périodes</strong> : Possibilité de
-                                            prévoir les recettes sur des périodes courtes, moyennes et longues.</li>
-                                    </ul>
-
-                                    <h5 class="mt-4 font-weight-bold">Utilisation de l'outil :</h5>
-                                    <p>L'outil est conçu pour être utilisé par les responsables de la gestion
-                                        financière, les planificateurs budgétaires, et les économistes au sein des
-                                        ministères des Finances, des Collectivités Locales, et des autres entités
-                                        gouvernementales impliquées dans la gestion des recettes non fiscales.</p>
-
-                                    <p>Il suffit de saisir les données historiques disponibles, telles que les montants
-                                        des recettes des années précédentes, et l'outil se charge de générer les
-                                        prévisions futures à l'aide de modèles mathématiques et économiques
-                                        sophistiqués.</p>
-
-                                    <h5 class="mt-4 font-weight-bold">Téléchargez le guide de l'utilisateur :</h5>
-                                    <p>Pour vous familiariser avec l'utilisation complète de l'outil et ses
-                                        fonctionnalités avancées, vous pouvez télécharger le guide en format PDF
-                                        ci-dessous.</p>
-
-                                    <!-- Bouton de téléchargement du guide PDF -->
-                                    <a href="guide_utilisateur.pdf" class="btn btn-primary btn-lg mx-auto my-4"
-                                        download>
-                                        <i class="fas fa-download"></i> Télécharger le guide en PDF
-                                    </a>
+                                    <div class="mb-2">
+                                        <strong>Responsable : </strong> Alice Smith
+                                    </div>
+                                    <div class="mb-2">
+                                        <strong>Fichier : </strong> <a href="#"
+                                            class="text-blue-600">historique_rapport_02.pdf</a>
+                                    </div>
+                                    <div class="mb-2">
+                                        <strong>Observations : </strong> Rapport final sur les modifications apportées
+                                        au processus.
+                                    </div>
+                                    <div class="mb-2">
+                                        <strong>Date de soumission : </strong> 3 janvier 2025
+                                    </div>
                                 </div>
+
+                                <!-- Vous pouvez ajouter d'autres soumissions ici -->
                             </div>
+
+
                         </div>
                     </div>
-
 
                 </div>
                 <!-- /.container-fluid -->
