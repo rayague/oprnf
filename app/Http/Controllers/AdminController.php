@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Recette;
 use Illuminate\Http\Request;
 use App\Models\RecettesSelectionnee;
@@ -40,4 +41,26 @@ class AdminController extends Controller
     {
         return view('admin.previsions'); // La vue 'commune.dashboard' doit exister
     }
+
+    public function utilisateurs()
+    {
+        return view('admin.utilisateurs'); // La vue 'commune.dashboard' doit exister
+    }
+
+    // public function listeUtilisateurs()
+    // {
+    //       // Récupérer tous les utilisateurs sauf 'administrateurs' et 'communes'
+    //       $users = User::whereNotIn('name', ['administrateurs', 'communes'])->get();
+    //     return view('admin.listeUtilisateurs', compact('users')); // La vue 'commune.dashboard' doit exister
+    // }
+
+    public function listeUtilisateurs()
+{
+    // Récupérer tous les utilisateurs sauf 'administrateurs' et 'communes'
+    $users = User::whereNotIn('name', ['administrateurs', 'communes'])
+                  ->with('userPassword') // Charger les mots de passe associés
+                  ->get();
+
+    return view('admin.listeUtilisateurs', compact('users'));
+}
 }

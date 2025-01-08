@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="shortcut icon" href="{{ asset('images/logo1.ico') }}" type="image/x-icon">
+
 
     <title>OPRNF</title>
 
@@ -99,6 +101,23 @@
                     <i class="fas fa-bullseye"></i>
                     <span class="font-weight-bold text-center">PRÉVISIONS</span>
                 </a>
+            </li>
+
+            <!-- Nav Item - PREVISIONS -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.utilisateurs') }}">
+                    <i class="fas fa-user"></i>
+                    <span class="font-weight-bold text-center">UTILISATEURS</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - DECONNEXION -->
+            <li class="nav-item hover:bg-red-500">
+                <form class="nav-link" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <i class="fas fa-sign-out-alt"></i>
+                    <input class="font-weight-bold text-center" type="submit" value="DÉCONNEXION" />
+                </form>
             </li>
 
 

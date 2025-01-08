@@ -1,15 +1,14 @@
 <?php
 
+
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
@@ -19,7 +18,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'commune',
         'password',
     ];
 
@@ -42,7 +41,15 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password' => 'hashed', // Il est important de garder cela pour les mots de passe hachés si tu continues à utiliser un mot de passe haché.
         ];
+    }
+
+    /**
+     * Relation one-to-one avec la table 'user_passwords' (si tu crées une nouvelle table pour stocker les mots de passe).
+     */
+    public function userPassword()
+    {
+        return $this->hasOne(UserPassword::class);
     }
 }

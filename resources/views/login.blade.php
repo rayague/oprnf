@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>OPRNF</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link rel="shortcut icon" href="{{ asset("images/logo1.ico") }}" type="image/x-icon">
+    <title>OPRNF</title>
 
-        <!-- Styles / Scripts -->
-        @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @else
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" href="{{ asset('images/logo1.ico') }}" type="image/x-icon">
 
-        @endif
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <body class="font-sans bg-gray-200">
-        {{-- <div class="">
+    <!-- Styles / Scripts -->
+    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @else
+    @endif
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans bg-gray-200">
+    {{-- <div class="">
             <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                     <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
@@ -61,34 +62,40 @@
                 </div>
             </div>
         </div> --}}
-        <div class="bg-gray-300 px-3 py-5 w-full flex flex-row justify-between items-center">
-            <img src="{{ asset('images/logo5.png') }}" class="w-32 lg:w-44 md:w-32 " alt="">
-            <img src="{{ asset('images/logo3.png') }}" class="w-8 lg:w-16 md:w-12 " alt="">
+    <div class="bg-gray-300 px-3 py-5 w-full flex flex-row justify-between items-center">
+        <img src="{{ asset('images/logo5.png') }}" class="w-32 lg:w-44 md:w-32 " alt="">
+        <img src="{{ asset('images/logo3.png') }}" class="w-8 lg:w-16 md:w-12 " alt="">
 
-        </div>
+    </div>
 
-        <div class="text-center w-full p-10 mt-32">
-            <form action="/submit" class="bg-gray-100 lg:w-1/2 md:w-1/2 sm:w-2/3 w-full mx-auto rounded-lg shadow-md flex flex-col items-center justify-center p-5" method="POST">
-                @csrf <!-- Token CSRF pour la sécurité en Laravel -->
+    <div class="text-center w-full p-10 mt-32">
+        <form action="{{ route('login') }}"
+            class="bg-gray-100 lg:w-1/2 md:w-1/2 sm:w-2/3 w-full mx-auto rounded-lg shadow-md flex flex-col items-center justify-center p-5"
+            method="POST">
+            @csrf <!-- Token CSRF pour la sécurité en Laravel -->
 
-                <!-- Champ mot de passe -->
-                <input type="password" name="password" placeholder="Entrez votre mot de passe" class="w-full p-3 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-600 focus:border-transparent" required>
+            <!-- Champ mot de passe -->
+            <input type="password" name="password" placeholder="Entrez votre mot de passe"
+                class="w-full p-3 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-600 focus:border-transparent"
+                required>
 
-                <!-- Affichage des erreurs -->
-                @error('password')
-                    <div class="text-red-600 bg-red-100 w-full p-3 text-sm mb-4 rounded-md font-bold shadow">
-                        {{ $message }}
-                    </div>
-                @enderror
+            <!-- Affichage des erreurs -->
+            @error('password')
+                <div class="text-red-600 bg-red-100 w-full p-3 text-sm mb-4 rounded-md font-bold shadow">
+                    {{ $message }}
+                </div>
+            @enderror
 
-                <!-- Bouton submit -->
-                <button type="submit" class="w-full bg-sky-600 hover:bg-sky-700 duration-100 p-3 flex mx-auto text-center flex-row items-center justify-center text-md font-extrabold text-white rounded-md shadow">
-                    Continuer
-                </button>
-            </form>
-        </div>
+            <!-- Bouton submit -->
+            <button type="submit"
+                class="w-full bg-sky-600 hover:bg-sky-700 duration-100 p-3 flex mx-auto text-center flex-row items-center justify-center text-md font-extrabold text-white rounded-md shadow">
+                Continuer
+            </button>
+        </form>
+    </div>
 
 
 
-    </body>
+</body>
+
 </html>

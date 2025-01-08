@@ -35,11 +35,12 @@
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center font-bold" href="index.html">
+            <a class="sidebar-brand flex flex-row align-items-center justify-content-center font-bold"
+                href="index.html">
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('images/logo2.png') }}" class="img-thumbnail w-50" alt="">
                 </div>
-                <div class="sidebar-brand-text mx-3">OPRNF</div>
+                <div class="sidebar-brand-text  text-center">OPRNF</div>
             </a>
 
             <!-- Divider -->
@@ -56,8 +57,8 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Accueil -->
-            <li class="nav-item bg-green-500">
-                <a class="nav-link" href="{{ route('commune.dashboard') }}">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-fw fa-home"></i>
                     <span class="font-weight-bold">ACCUEIL</span>
                 </a>
@@ -66,7 +67,7 @@
 
             <!-- Nav Item - Cadre -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('cadrage') }}">
+                <a class="nav-link" href="{{ route('admin.cadrage') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span class="font-weight-bold">CADRAGE</span>
                 </a>
@@ -74,7 +75,7 @@
 
             <!-- Nav Item - Hypothèses -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('hypotheses') }}">
+                <a class="nav-link" href="{{ route('admin.hypotheses') }}">
                     <i class="fas fa-fw fa-chart-line"></i>
                     <span class="font-weight-bold">HYPOTHESES</span>
                 </a>
@@ -82,7 +83,7 @@
 
             <!-- Nav Item - Solver -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('solver') }}">
+                <a class="nav-link" href="{{ route('admin.solver') }}">
                     <i class="fas fa-fw fa-cogs"></i>
                     <span class="font-weight-bold">SOLVER</span>
                 </a>
@@ -90,27 +91,38 @@
 
             <!-- Nav Item - Recettes -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('recettes') }}">
+                <a class="nav-link" href="{{ route('admin.recettes') }}">
                     <i class="fas fa-fw fa-utensils"></i>
                     <span class="font-weight-bold">RECETTES</span>
                 </a>
             </li>
-
-            <!-- Nav Item - Formulaire -->
+            <!-- Nav Item - PREVISIONS -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('formulaire') }}">
-                    <i class="fas fa-fw fa-pencil-alt"></i> <!-- Nouvelle icône pour Formulaire -->
-                    <span class="font-weight-bold">FORMULAIRE</span>
+                <a class="nav-link" href="{{ route('admin.utilisateurs') }}">
+                    <i class="fas fa-bullseye"></i>
+                    <span class="font-weight-bold text-center">PRÉVISIONS</span>
                 </a>
             </li>
 
-            <!-- Nav Item - Historiques -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('historiques') }}">
-                    <i class="fas fa-fw fa-history"></i> <!-- Nouvelle icône pour Historiques -->
-                    <span class="font-weight-bold">HISTORIQUES</span>
+            <!-- Nav Item - PREVISIONS -->
+            <li class="nav-item bg-green-500">
+                <a class="nav-link" href="{{ route('admin.utilisateurs') }}">
+                    <i class="fas fa-user"></i>
+                    <span class="font-weight-bold text-center">UTILISATEURS</span>
                 </a>
             </li>
+
+            <!-- Nav Item - DECONNEXION -->
+            <li class="nav-item hover:bg-red-500">
+                <form class="nav-link" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <i class="fas fa-sign-out-alt"></i>
+                    <input class="font-weight-bold text-center" type="submit" value="DÉCONNEXION" />
+                </form>
+            </li>
+
+
+
 
 
 
@@ -140,6 +152,19 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
+                    <!-- Topbar Search -->
+                    {{-- <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form> --}}
 
                     <p class="font-black text-xs lg:9xl text-green-700"><span class="text-red-500">O</span>UTILS DE
                         <span class="text-red-500">P</span>REVISION DES
@@ -296,79 +321,122 @@
 
                     <!-- Content Row -->
                     <div class="row">
-                        <div class="col-12 mb-4">
+                        <div class="col-12 mb-4 mx-auto">
+                            <div class="space-y-4 flex flex-col">
 
-                            <!-- Outil de Prévision des Recettes Non Fiscales -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-green-500 font-bold text-lg">Outil de
-                                        Prévision des Recettes Non
-                                        Fiscales</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>Le <span class="font-black">**Outil de Prévision des Recettes Non Fiscales**
-                                        </span> a été conçu pour aider les
-                                        gestionnaires financiers, les économistes et les décideurs à estimer les
-                                        recettes provenant des différentes sources non fiscales de l'État, telles que
-                                        les droits de timbre, les amendes, les redevances, et autres revenus non liés
-                                        directement à la fiscalité traditionnelle.</p>
+                                <!-- Bouton Pour Voir la liste -->
+                                <a href="{{ route('listeUtilisateurs') }}"
+                                    class="inline-block bg-green-500 text-white text-center font-bold py-2 px-4 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 hover:no-underline my-4">
+                                    Voir la liste des utilisateurs
+                                </a>
 
-                                    <p>Ce système utilise des données historiques et des méthodes statistiques avancées
-                                        pour fournir des prévisions fiables et précises des recettes à venir. Il permet
-                                        ainsi de mieux planifier les budgets et de gérer les finances publiques de
-                                        manière plus efficace. L'outil prend en compte plusieurs variables, y compris
-                                        les tendances économiques, les changements réglementaires, et les performances
-                                        passées, pour offrir des prévisions à court, moyen et long terme.</p>
 
-                                    <h5 class="mt-4 font-weight-bold">Objectifs de l'outil :</h5>
-                                    <ul>
-                                        <li><strong>Estimation précise des recettes non fiscales</strong> : Fournir des
-                                            projections basées sur des données actualisées et des modèles économiques
-                                            fiables.</li>
-                                        <li><strong>Optimisation de la planification budgétaire</strong> : Aider les
-                                            autorités à ajuster les prévisions budgétaires et les plans financiers de
-                                            manière dynamique et précise.</li>
-                                        <li><strong>Amélioration de la gestion des finances publiques</strong> : Offrir
-                                            un outil puissant pour la prise de décision, la planification et la gestion
-                                            des finances de l'État.</li>
-                                    </ul>
+                            </div>
+                            <div class="bg-white shadow p-4 rounded-md">
+                                <h2 class="mb-4 font-extrabold text-xl">Gestion d'Utilisateur</h2>
 
-                                    <h5 class="mt-4 font-weight-bold">Caractéristiques principales :</h5>
-                                    <ul>
-                                        <li><strong>Interface intuitive</strong> : L'outil dispose d'une interface
-                                            conviviale, permettant une utilisation facile même pour les utilisateurs non
-                                            techniques.</li>
-                                        <li><strong>Actualisation des données en temps réel</strong> : Les données
-                                            utilisées pour les prévisions sont constamment mises à jour pour refléter
-                                            les conditions économiques actuelles.</li>
-                                        <li><strong>Rapports détaillés</strong> : Génération de rapports et de
-                                            graphiques visuels pour une meilleure compréhension des prévisions.</li>
-                                        <li><strong>Prédictions sur différentes périodes</strong> : Possibilité de
-                                            prévoir les recettes sur des périodes courtes, moyennes et longues.</li>
-                                    </ul>
+                                <!-- Formulaire de création ou de mise à jour de l'utilisateur -->
+                                <form action="{{ route('storeCommunesUsers') }}" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="commune">Sélectionner une commune</label>
+                                        <select name="commune" id="commune" class="form-control" required>
+                                            <option value="" disabled selected>Choisir une commune</option>
+                                            <option value="Abomey">Abomey</option>
+                                            <option value="Aguégués">Aguégués</option>
+                                            <option value="Akpro-Missérété">Akpro-Missérété</option>
+                                            <option value="Allada">Allada</option>
+                                            <option value="Aplahoué">Aplahoué</option>
+                                            <option value="Bembèrèkè">Bembèrèkè</option>
+                                            <option value="Bohicon">Bohicon</option>
+                                            <option value="Bokoumbé">Bokoumbé</option>
+                                            <option value="Dassa-Zoumé">Dassa-Zoumé</option>
+                                            <option value="Dangbo">Dangbo</option>
+                                            <option value="Djakotomey">Djakotomey</option>
+                                            <option value="Djidja">Djidja</option>
+                                            <option value="Dogbo">Dogbo</option>
+                                            <option value="Houéyogbé">Houéyogbé</option>
+                                            <option value="Kandi">Kandi</option>
+                                            <option value="Kétou">Kétou</option>
+                                            <option value="Kouandé">Kouandé</option>
+                                            <option value="Kpomassé">Kpomassé</option>
+                                            <option value="Lokossa">Lokossa</option>
+                                            <option value="Malanville">Malanville</option>
+                                            <option value="Ouidah">Ouidah</option>
+                                            <option value="Parakou">Parakou</option>
+                                            <option value="Pobè">Pobè</option>
+                                            <option value="Porto-Novo">Porto-Novo</option>
+                                            <option value="Savalou">Savalou</option>
+                                            <option value="Tchaourou">Tchaourou</option>
+                                            <option value="Togbin">Togbin</option>
+                                            <option value="Togoudo">Togoudo</option>
+                                            <option value="Tori-Bossito">Tori-Bossito</option>
+                                            <option value="Zagnanado">Zagnanado</option>
+                                            <option value="Zogbodomey">Zogbodomey</option>
+                                            <option value="Za-Kpota">Za-Kpota</option>
+                                            <option value="Adjarra">Adjarra</option>
+                                            <option value="Avrankou">Avrankou</option>
+                                            <option value="Bantè">Bantè</option>
+                                            <option value="Bassar">Bassar</option>
+                                            <option value="Bembereke">Bembereke</option>
+                                            <option value="Cotonou">Cotonou</option>
+                                            <option value="Copeta">Copeta</option>
+                                            <option value="Donga">Donga</option>
+                                            <option value="Dassa-Zoumé">Dassa-Zoumé</option>
+                                            <option value="Adjarra">Adjarra</option>
+                                            <option value="Kouandé">Kouandé</option>
+                                            <option value="Zogbodomey">Zogbodomey</option>
+                                            <option value="Tori">Tori</option>
+                                            <option value="Aklampa">Aklampa</option>
+                                            <option value="Aiyémé">Aiyémé</option>
+                                            <option value="Akabada">Akabada</option>
+                                            <option value="Banikoara">Banikoara</option>
+                                            <option value="Cotonou">Cotonou</option>
+                                            <option value="Assahoun">Assahoun</option>
+                                            <option value="Atacora">Atacora</option>
+                                            <option value="Aplahoué">Aplahoué</option>
+                                            <option value="Bohicon">Bohicon</option>
+                                            <option value="Comé">Comé</option>
+                                            <option value="Tanguieta">Tanguieta</option>
+                                            <option value="Pérou">Pérou</option>
+                                            <option value="Onigbongbo">Onigbongbo</option>
+                                            <option value="Tanguiéta">Tanguiéta</option>
+                                        </select>
 
-                                    <h5 class="mt-4 font-weight-bold">Utilisation de l'outil :</h5>
-                                    <p>L'outil est conçu pour être utilisé par les responsables de la gestion
-                                        financière, les planificateurs budgétaires, et les économistes au sein des
-                                        ministères des Finances, des Collectivités Locales, et des autres entités
-                                        gouvernementales impliquées dans la gestion des recettes non fiscales.</p>
+                                    </div>
 
-                                    <p>Il suffit de saisir les données historiques disponibles, telles que les montants
-                                        des recettes des années précédentes, et l'outil se charge de générer les
-                                        prévisions futures à l'aide de modèles mathématiques et économiques
-                                        sophistiqués.</p>
+                                    <div class="form-group">
+                                        <label for="password">Mot de passe</label>
+                                        <input type="text" name="password" id="password" class="form-control"
+                                            placeholder="Entrez un mot de passe" required>
+                                    </div>
+                                    <input type="hidden" name="name" value="commune">
 
-                                    <h5 class="mt-4 font-weight-bold">Téléchargez le guide de l'utilisateur :</h5>
-                                    <p>Pour vous familiariser avec l'utilisation complète de l'outil et ses
-                                        fonctionnalités avancées, vous pouvez télécharger le guide en format PDF
-                                        ci-dessous.</p>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-secondary"
+                                            onclick="generatePassword()">Générer un mot de passe</button>
+                                    </div>
 
-                                    <!-- Bouton de téléchargement du guide PDF -->
-                                    <a href="guide_utilisateur.pdf" class="btn btn-primary btn-lg mx-auto my-4"
-                                        download>
-                                        <i class="fas fa-download"></i> Télécharger le guide en PDF
-                                    </a>
-                                </div>
+                                    <!-- Afficher les messages de succès ou d'erreur -->
+                                    @if (session('success'))
+                                        <div class="alert alert-success">{{ session('success') }}</div>
+                                    @endif
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+
+                                    <div class="form-group">
+                                        <button type="submit"
+                                            class="btn btn-primary w-full font-bold">Enrégistrer</button>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -420,6 +488,16 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Fonction pour générer un mot de passe automatiquement
+        function generatePassword() {
+            const password = Math.random().toString(36).slice(-8); // Génère un mot de passe de 8 caractères aléatoires
+            const passwordField = document.getElementById("password");
+            passwordField.value = password; // Remplir le champ mot de passe
+            passwordField.type = "text"; // Assurez-vous que le champ soit visible (type text)
+        }
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('dashboard/vendor/jquery/jquery.min.js') }}"></script>
