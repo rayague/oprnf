@@ -110,6 +110,14 @@
                     <span class="font-weight-bold">HISTORIQUES</span>
                 </a>
             </li>
+            <!-- Nav Item - DECONNEXION -->
+            <li class="nav-item hover:bg-red-500">
+                <form class="nav-link" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <i class="fas fa-sign-out-alt"></i>
+                    <input class="font-weight-bold text-center" type="submit" value="DÉCONNEXION" />
+                </form>
+            </li>
 
 
 
@@ -191,7 +199,19 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <h3 class="nav-link dropdown-toggle">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Communes</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    @auth
+                                        {{ Auth::user()->name }} <!-- Affiche le nom de l'utilisateur connecté -->
+                                        <!-- Affiche la commune de l'utilisateur connecté, si elle existe -->
+                                        @if (Auth::user()->commune)
+                                            ({{ Auth::user()->commune }})
+                                        @else
+                                            (Commune non définie)
+                                        @endif
+                                    @else
+                                        Invité
+                                    @endauth
+                                </span>
                                 <img class="img-profile rounded-circle" src="{{ asset('images/logo1.ico') }}">
                             </h3>
                             <!-- Dropdown - User Information -->
@@ -304,58 +324,117 @@
                     </div>
 
 
-                    <!-- Content Row -->
                     <div class="row">
                         <div class="col-lg-12 mb-4">
-
                             <div class="container mt-5">
-                                <h2 class="font-bold mb-4">Historique des Soumissions</h2>
+                                <h2 class="font-bold mb-4 text-3xl">Historique des Soumissions</h2>
 
-                                <!-- Historique des soumissions -->
-                                <div class="bg-white rounded-md p-4 shadow mb-4">
-                                    <h3 class="font-bold text-lg mb-3">Soumission 1</h3>
+                                @if ($previsions->isEmpty())
+                                    <div class="bg-gray-100 text-center p-4 rounded-md shadow-md">
+                                        <p class="text-xl">Aucune soumission trouvée.</p>
+                                    </div>
+                                @else
+                                    <!-- Container for the card layout -->
+                                    <div class="d-flex flex-column">
+                                        @foreach ($previsions as $prevision)
+                                            <div class="mb-4">
+                                                <div class="bg-white rounded-lg shadow-lg p-4">
+                                                    <div class="mb-3">
+                                                        <h3 class="font-bold text-xl text-blue-600">Soumission
+                                                            {{ $loop->iteration }}</h3>
+                                                        <p class="text-gray-500">
+                                                            {{ $prevision->created_at->format('d F Y') }}</p>
+                                                    </div>
 
-                                    <div class="mb-2">
-                                        <strong>Responsable : </strong> John Doe
-                                    </div>
-                                    <div class="mb-2">
-                                        <strong>Fichier : </strong> <a href="#"
-                                            class="text-blue-600">historique_rapport_01.pdf</a>
-                                    </div>
-                                    <div class="mb-2">
-                                        <strong>Observations : </strong> L'historique a été envoyé pour la révision du
-                                        rapport de projet.
-                                    </div>
-                                    <div class="mb-2">
-                                        <strong>Date de soumission : </strong> 4 janvier 2025
-                                    </div>
-                                </div>
+                                                    <!-- Observations Section -->
+                                                    <div class="mb-3">
+                                                        <strong class="text-gray-800">Observations :</strong>
+                                                        <p class="text-gray-600 flex ">
+                                                            <span class="text-truncate text-wrap text-break"
+                                                                style="display: inline-block; max-width: 100%; text-overflow: ellipsis;">
+                                                                {{ $prevision->observations }}
+                                                            </span>
+                                                        </p>
+                                                    </div>
 
-                                <div class="bg-white rounded-md p-4 shadow mb-4">
-                                    <h3 class="font-bold text-lg mb-3">Soumission 2</h3>
+                                                    <!-- File Section -->
+                                                    <div class="mb-3">
+                                                        <strong class="text-gray-800">Fichier : </strong>
+                                                        <div class="flex items-center space-x-2">
+                                                            <a href="{{ Storage::url($prevision->fichier) }}"
+                                                                target="_blank" class="text-blue-600 hover:underline">
+                                                                <i class="fas fa-file-pdf mr-1"></i> Voir le document
+                                                            </a>
+                                                            <button class="btn btn-secondary text-sm"
+                                                                data-toggle="modal"
+                                                                data-target="#filePreviewModal{{ $prevision->id }}">
+                                                                Aperçu
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                    <div class="mb-2">
-                                        <strong>Responsable : </strong> Alice Smith
-                                    </div>
-                                    <div class="mb-2">
-                                        <strong>Fichier : </strong> <a href="#"
-                                            class="text-blue-600">historique_rapport_02.pdf</a>
-                                    </div>
-                                    <div class="mb-2">
-                                        <strong>Observations : </strong> Rapport final sur les modifications apportées
-                                        au processus.
-                                    </div>
-                                    <div class="mb-2">
-                                        <strong>Date de soumission : </strong> 3 janvier 2025
-                                    </div>
-                                </div>
+                                            <!-- Modal pour afficher l'intégralité des observations -->
+                                            <div class="modal fade" id="observationModal{{ $prevision->id }}"
+                                                tabindex="-1" aria-labelledby="observationModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="observationModalLabel">
+                                                                Observations Complètes</h5>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>{{ $prevision->observations }}</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Fermer</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                <!-- Vous pouvez ajouter d'autres soumissions ici -->
+                                            <!-- Modal pour l'aperçu du fichier -->
+                                            <div class="modal fade" id="filePreviewModal{{ $prevision->id }}"
+                                                tabindex="-1" aria-labelledby="filePreviewModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="filePreviewModalLabel">Aperçu
+                                                                du fichier</h5>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <iframe src="{{ Storage::url($prevision->fichier) }}"
+                                                                width="100%" height="400px"></iframe>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Fermer</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
                             </div>
-
-
                         </div>
                     </div>
+
+
+
+
 
                 </div>
                 <!-- /.container-fluid -->

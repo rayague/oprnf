@@ -205,7 +205,19 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <h3 class="nav-link dropdown-toggle">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Communes</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    @auth
+                                        {{ Auth::user()->name }} <!-- Affiche le nom de l'utilisateur connecté -->
+                                        <!-- Affiche la commune de l'utilisateur connecté, si elle existe -->
+                                        @if (Auth::user()->commune)
+                                            ({{ Auth::user()->commune }})
+                                        @else
+                                            (Commune non définie)
+                                        @endif
+                                    @else
+                                        Invité
+                                    @endauth
+                                </span>
                                 <img class="img-profile rounded-circle" src="{{ asset('images/logo1.ico') }}">
                             </h3>
                             <!-- Dropdown - User Information -->
@@ -329,7 +341,7 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">Nom de la commune</th>
-                                            <th scope="col">Mot de Passe Haché</th>
+                                            <th scope="col">Mot de Passe</th>
                                             <th scope="col">Date d'Ajout</th>
                                         </tr>
                                     </thead>
@@ -337,7 +349,8 @@
                                         @foreach ($users as $user)
                                             <tr>
                                                 <td class="font-normal text-black">{{ $user->commune }}</td>
-                                                <td class="font-normal text-black">{{ $user->password }}</td>
+                                                <td class="font-normal text-black">{{ $user->userPassword->password }}
+                                                </td>
                                                 <td class="font-normal text-black">
                                                     {{ $user->created_at->format('d/m/Y H:i') }}</td>
                                             </tr>
@@ -346,28 +359,6 @@
                                 </table>
                             </div>
                         </div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nom</th>
-                                    <th>Commune</th>
-                                    <th>Mot de Passe</th>
-                                    <th>Date de Création</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($users as $user)
-                                    <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->commune }}</td>
-                                        <td>{{ $user->userPassword->password }}</td> <!-- Affichage du mot de passe -->
-                                        <td>{{ $user->created_at }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
 
                     </div>
 

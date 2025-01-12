@@ -20,7 +20,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255', // Validation du nom
             'commune' => 'required|unique:users,commune', // Validation de la commune
-            'password' => 'required|string|max:255', // Validation du mot de passe
+            'password' => 'required|min:4', // Validation du mot de passe
         ]);
 
         // Création d'un nouvel utilisateur

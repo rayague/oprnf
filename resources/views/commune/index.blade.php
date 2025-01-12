@@ -112,6 +112,15 @@
                 </a>
             </li>
 
+            <!-- Nav Item - DECONNEXION -->
+            <li class="nav-item hover:bg-red-500">
+                <form class="nav-link" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <i class="fas fa-sign-out-alt"></i>
+                    <input class="font-weight-bold text-center" type="submit" value="DÉCONNEXION" />
+                </form>
+            </li>
+
 
 
 
@@ -180,9 +189,23 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <h3 class="nav-link dropdown-toggle">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Communes</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    @auth
+                                        {{ Auth::user()->name }} <!-- Affiche le nom de l'utilisateur connecté -->
+                                        <!-- Affiche la commune de l'utilisateur connecté, si elle existe -->
+                                        @if (Auth::user()->commune)
+                                            ({{ Auth::user()->commune }})
+                                        @else
+                                            (Commune non définie)
+                                        @endif
+                                    @else
+                                        Invité
+                                    @endauth
+                                </span>
                                 <img class="img-profile rounded-circle" src="{{ asset('images/logo1.ico') }}">
                             </h3>
+
+
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">

@@ -187,7 +187,19 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <h3 class="nav-link dropdown-toggle">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Communes</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    @auth
+                                        {{ Auth::user()->name }} <!-- Affiche le nom de l'utilisateur connecté -->
+                                        <!-- Affiche la commune de l'utilisateur connecté, si elle existe -->
+                                        @if (Auth::user()->commune)
+                                            ({{ Auth::user()->commune }})
+                                        @else
+                                            (Commune non définie)
+                                        @endif
+                                    @else
+                                        Invité
+                                    @endauth
+                                </span>
                                 <img class="img-profile rounded-circle" src="{{ asset('images/logo1.ico') }}">
                             </h3>
 
@@ -280,7 +292,7 @@
 
                     <!-- Content Row -->
                     <div class="row">
-                        <div class="col-lg-6 mx-auto my-8">
+                        <div class="col-lg-8 mx-auto my-8">
 
                             <div class="space-y-4 flex flex-col">
                                 <!-- Bouton Exécuter -->

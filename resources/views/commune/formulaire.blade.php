@@ -110,6 +110,14 @@
                     <span class="font-weight-bold">HISTORIQUES</span>
                 </a>
             </li>
+            <!-- Nav Item - DECONNEXION -->
+            <li class="nav-item hover:bg-red-500">
+                <form class="nav-link" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <i class="fas fa-sign-out-alt"></i>
+                    <input class="font-weight-bold text-center" type="submit" value="DÉCONNEXION" />
+                </form>
+            </li>
 
 
 
@@ -178,7 +186,19 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <h3 class="nav-link dropdown-toggle">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Communes</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    @auth
+                                        {{ Auth::user()->name }} <!-- Affiche le nom de l'utilisateur connecté -->
+                                        <!-- Affiche la commune de l'utilisateur connecté, si elle existe -->
+                                        @if (Auth::user()->commune)
+                                            ({{ Auth::user()->commune }})
+                                        @else
+                                            (Commune non définie)
+                                        @endif
+                                    @else
+                                        Invité
+                                    @endauth
+                                </span>
                                 <img class="img-profile rounded-circle" src="{{ asset('images/logo1.ico') }}">
                             </h3>
 
@@ -274,22 +294,28 @@
                     <div class="row">
                         <div class="col-lg-10 my-4 mx-auto">
 
-                            <form class="bg-white rounded-md p-4 shadow">
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label font-bold">Responsable</label>
-                                    <input type="email" class="form-control bg-gray-100" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp">
+                            <!-- Afficher le message de succès -->
+                            @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
 
-                                </div>
+                            <form class="bg-white rounded-md p-4 shadow" action="{{ route('previsions.store') }}"
+                                method="POST" enctype="multipart/form-data">
+                                @csrf
+
                                 <div class="mb-3">
-                                    <label for="formFile" class="form-label font-bold">Selectionner le
-                                        fichier</label>
-                                    <input class="form-control bg-gray-100" type="file" id="formFile">
+                                    <label for="formFile" class="form-label font-bold">Selectionner le fichier</label>
+                                    <input class="form-control bg-gray-100" type="file" name="fichier"
+                                        id="formFile" required>
                                 </div>
+
                                 <div class="mb-3">
                                     <label for="exampleFormControlTextarea1"
                                         class="form-label font-bold">Observations</label>
-                                    <textarea class="form-control bg-gray-100" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea class="form-control bg-gray-100" id="exampleFormControlTextarea1" name="observations" rows="3"
+                                        required></textarea>
                                 </div>
 
                                 <div class="col-12">
@@ -299,6 +325,8 @@
 
                         </div>
                     </div>
+
+
 
                 </div>
                 <!-- /.container-fluid -->

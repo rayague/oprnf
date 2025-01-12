@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>OPRNF</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link rel="shortcut icon" href="{{ asset("images/logo1.ico") }}" type="image/x-icon">
+    <title>OPRNF</title>
 
-        <!-- Styles / Scripts -->
-        @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @else
-        @endif
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <body class="font-sans bg-gray-200">
-        {{-- <div class="">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" href="{{ asset('images/logo1.ico') }}" type="image/x-icon">
+
+    <!-- Styles / Scripts -->
+    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @else
+    @endif
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans bg-gray-200">
+    {{-- <div class="">
             <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                     <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
@@ -60,21 +62,27 @@
                 </div>
             </div>
         </div> --}}
-        <div class="bg-gray-300 px-3 py-5 w-full flex flex-row justify-between items-center">
-            <img src="{{ asset('images/logo5.png') }}" class="w-32 lg:w-44 md:w-32 " alt="">
-            <img src="{{ asset('images/logo3.png') }}" class="w-8 lg:w-16 md:w-12 " alt="">
+    <div class="bg-gray-300 px-3 py-5 w-full flex flex-row justify-between items-center">
+        <img src="{{ asset('images/logo5.png') }}" class="w-32 lg:w-44 md:w-32 " alt="">
+        <img src="{{ asset('images/logo3.png') }}" class="w-8 lg:w-16 md:w-12 " alt="">
 
-        </div>
-        <div class="text-center w-full p-10">
-            <p class="font-black text-2xl lg:7xl text-black">DIRECTION GENERALE DU TRESOR ET DE LA COMPTABILITE PUBLIQUE (DGTCP)</p>
-        </div>
-        <div class="text-center w-full p-10">
-            <p class="font-black text-2xl lg:9xl text-green-700"><span class="text-red-500">B</span>IENVENUE SUR L'<span class="text-red-500">O</span>UTILS DE <span class="text-red-500">P</span>REVISION DES <span class="text-red-500">R</span>ECETTES <span class="text-red-500">N</span>ON <span class="text-red-500">F</span>ISCALES (<span class="text-red-500">OPRNF</span>)</p>
-        </div>
+    </div>
+    <div class="text-center w-full p-10">
+        <p class="font-black text-2xl lg:7xl text-black">DIRECTION GENERALE DU TRESOR ET DE LA COMPTABILITE PUBLIQUE
+            (DGTCP)</p>
+    </div>
+    <div class="text-center w-full p-10">
+        <p class="font-black text-2xl lg:9xl text-green-700"><span class="text-red-500">B</span>IENVENUE SUR L'<span
+                class="text-red-500">O</span>UTILS DE <span class="text-red-500">P</span>REVISION DES <span
+                class="text-red-500">R</span>ECETTES <span class="text-red-500">N</span>ON <span
+                class="text-red-500">F</span>ISCALES (<span class="text-red-500">OPRNF</span>)</p>
+    </div>
 
-        <div class="text-center w-full p-10">
+    <div class="text-center w-full p-10">
 
-            <a href="{{ route('login') }}" class="lg:w-1/2 md:w-1/2 sm:w-2/3 w-full bg-sky-600 hover:bg-sky-700 duration-100 p-3 flex mx-auto text-center flex-row items-center justify-center text-xl font-bold text-white rounded-md shadow">Continuer</a>
-        </div>
-    </body>
+        <a href="{{ route('loginView') }}"
+            class="lg:w-1/2 md:w-1/2 sm:w-2/3 w-full bg-sky-600 hover:bg-sky-700 duration-100 p-3 flex mx-auto text-center flex-row items-center justify-center text-xl font-bold text-white rounded-md shadow">Continuer</a>
+    </div>
+</body>
+
 </html>
