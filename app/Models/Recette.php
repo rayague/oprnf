@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Recette extends Model
 {
     use HasFactory;
-    protected $fillable = ['nom'];
-    //
+    protected $fillable = ['nom', 'selectionnee'];    //
+    protected $casts = [
+        'selectionnee' => 'boolean',
+    ];
 }

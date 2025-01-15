@@ -311,8 +311,8 @@
 
                     <!-- Content Row -->
                     <div class="row flex flex-col lg:flex-row md:flex-row rounded-md p-0 md:p-2 lg:p-4">
+                        <!-- Liste des recettes non fiscales -->
                         <div class="col-lg-5 mb-4">
-                            <!-- Liste des recettes non fiscales -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-green-500 font-extrabold text-xl">Liste des
@@ -320,37 +320,35 @@
                                 </div>
                                 <div class="card-body">
                                     <p class="mb-4">Voici une liste des différentes recettes non fiscales disponibles
-                                        dans le système. Vous pouvez cliquer sur chaque bouton pour sélectionner une
-                                        recette.</p>
-
-                                    <!-- Générer les boutons dynamiquement à partir des données de la base -->
-                                    @foreach ($recettes as $recette)
-                                        <button type="button"
-                                            class="border bg-slate-200 rounded-md p-2 font-bold text-gray-800 mb-3 w-100">
-                                            {{ $recette->nom }}
-                                        </button>
-                                    @endforeach
+                                        dans le système. Vous pouvez cliquer sur chaque recette pour la sélectionner.
+                                    </p>
+                                    <div class="list" id="available">
+                                        <!-- Liste statique de recettes non fiscales -->
+                                        <div class="item" onclick="moveToSelected(this)" data-id="1">Recette Non
+                                            Fiscale 1</div>
+                                        <div class="item" onclick="moveToSelected(this)" data-id="2">Recette Non
+                                            Fiscale 2</div>
+                                        <div class="item" onclick="moveToSelected(this)" data-id="3">Recette Non
+                                            Fiscale 3</div>
+                                        <div class="item" onclick="moveToSelected(this)" data-id="4">Recette Non
+                                            Fiscale 4</div>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
 
-
+                        <!-- Flèche de séparation -->
                         <div class="col-lg-2 text-center align-self-center">
-                            <!-- Flèche de gauche vers la droite -->
                             <div class="mb-4">
                                 <i class="fas fa-arrow-right fa-3x"></i>
                             </div>
-
-                            <!-- Flèche de droite vers la gauche -->
                             <div>
                                 <i class="fas fa-arrow-left fa-3x"></i>
                             </div>
                         </div>
 
-
+                        <!-- Liste des recettes non fiscales sélectionnées -->
                         <div class="col-lg-5 mb-4">
-                            <!-- Liste des recettes non fiscales sélectionnées -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-green-500 font-extrabold text-xl">Liste des
@@ -358,32 +356,22 @@
                                 </div>
                                 <div class="card-body">
                                     <p class="mb-4">Voici la liste des recettes que vous avez sélectionnées. Vous
-                                        pouvez désélectionner une recette en cliquant à nouveau sur son bouton.</p>
-
-                                    <!-- Générer les boutons dynamiquement à partir des données de la base -->
-                                    @foreach ($recettesSelectionnees as $recette)
-                                        <button type="button"
-                                            class="border bg-green-200 rounded-md p-2 font-bold text-gray-800 mb-3 w-100">
-                                            {{ $recette->nom }}
-                                        </button>
-                                    @endforeach
+                                        pouvez désélectionner une recette en cliquant dessus.</p>
+                                    <div class="list" id="selected">
+                                        <!-- Liste des recettes sélectionnées (actuellement vide) -->
+                                    </div>
                                 </div>
                             </div>
-
-
-
                         </div>
 
-
+                        <!-- Actions -->
                         <div class="row col-lg-12 mx-auto flex flex-row items-center justify-evenly space-y-4 mb-4">
-
                             <button type="button" class="btn btn-primary w-full">Modifier</button>
                             <button type="button" class="btn btn-success w-full">Rapatrier les recettes</button>
                             <button type="button" class="btn btn-secondary w-full">Suivant</button>
-
                         </div>
-
                     </div>
+
 
 
                 </div>
@@ -451,80 +439,33 @@
     <script src="{{ asset('dashboard/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('dashboard/js/demo/chart-pie-demo.js') }}"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const moveRightButton = document.getElementById('move-right');
-            const moveLeftButton = document.getElementById('move-left');
-
-            // Fonction pour déplacer une recette non fiscale vers les recettes sélectionnées
-            function moveToSelected(button) {
-                const recetteNom = button.getAttribute('data-nom');
-                const selectedDiv = document.getElementById('recettes-selectionnees');
-
-                // Créer un nouveau bouton dans la liste des recettes sélectionnées
-                const newButton = document.createElement('button');
-                newButton.type = 'button';
-                newButton.className =
-                    'recette-btn border bg-green-200 rounded-md p-2 font-bold text-gray-800 mb-3 w-full';
-                newButton.setAttribute('data-nom', recetteNom);
-                newButton.textContent = recetteNom;
-
-                // Ajouter le bouton à la liste des recettes sélectionnées
-                selectedDiv.appendChild(newButton);
-
-                // Ajouter un gestionnaire d'événement pour déplacer le bouton vers non fiscal
-                newButton.addEventListener('click', function() {
-                    moveToNonFiscal(newButton);
-                });
-
-                // Supprimer le bouton de la liste des recettes non fiscales
-                button.remove();
-            }
-
-            // Fonction pour déplacer une recette sélectionnée vers les recettes non fiscales
-            function moveToNonFiscal(button) {
-                const recetteNom = button.getAttribute('data-nom');
-                const nonFiscalDiv = document.getElementById('recettes-non-fiscales');
-
-                // Créer un nouveau bouton dans la liste des recettes non fiscales
-                const newButton = document.createElement('button');
-                newButton.type = 'button';
-                newButton.className =
-                    'recette-btn border bg-slate-200 rounded-md p-2 font-bold text-gray-800 mb-3 w-full';
-                newButton.setAttribute('data-nom', recetteNom);
-                newButton.textContent = recetteNom;
-
-                // Ajouter le bouton à la liste des recettes non fiscales
-                nonFiscalDiv.appendChild(newButton);
-
-                // Ajouter un gestionnaire d'événement pour déplacer le bouton vers sélectionné
-                newButton.addEventListener('click', function() {
-                    moveToSelected(newButton);
-                });
-
-                // Supprimer le bouton de la liste des recettes sélectionnées
-                button.remove();
-            }
-
-            // Gérer le mouvement des recettes via clic sur les flèches
-            moveRightButton.addEventListener('click', function() {
-                const recetteButtons = document.querySelectorAll('#recettes-non-fiscales .recette-btn');
-                recetteButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        moveToSelected(button);
-                    });
-                });
-            });
-
-            moveLeftButton.addEventListener('click', function() {
-                const recetteButtons = document.querySelectorAll('#recettes-selectionnees .recette-btn');
-                recetteButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        moveToNonFiscal(button);
-                    });
-                });
-            });
-        });
+        // Fonction pour déplacer un élément de la liste disponible vers la liste sélectionnée, et vice versa
+        function moveToSelected(element) {
+            const parent = element.parentElement.id; // Identifier la liste actuelle
+            const targetList = parent === "available" ? "selected" : "available"; // Déterminer la liste cible
+            document.getElementById(targetList).appendChild(element); // Déplacer l'élément vers la liste cible
+        }
     </script>
+
+    <style>
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .item {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .item:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
 
 </body>
 

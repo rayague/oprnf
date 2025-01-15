@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CommuneController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecetteController;
 use App\Http\Controllers\PrevisionController;
 
 Route::get('/', function () {
@@ -66,5 +67,8 @@ Route::get('/communes-users/create', [UserController::class, 'create'])->name('c
 
 // Route pour traiter le formulaire de soumission
 Route::post('/communes-users', [UserController::class, 'store'])->name('storeCommunesUsers');
+
+Route::post('/recettes/deplacer', [RecetteController::class, 'deplacer'])->name('recettes.deplacer');
+
 
 require __DIR__.'/auth.php';
