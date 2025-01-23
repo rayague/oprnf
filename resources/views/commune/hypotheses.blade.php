@@ -35,15 +35,15 @@
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center font-bold" href="index.html">
+            <a class="font-bold sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('images/logo2.png') }}" class="img-thumbnail w-50" alt="">
                 </div>
-                <div class="sidebar-brand-text mx-3">OPRNF</div>
+                <div class="mx-3 sidebar-brand-text">OPRNF</div>
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+            <hr class="my-0 sidebar-divider">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
@@ -63,42 +63,11 @@
                 </a>
             </li>
 
-            <!-- Nav Item - Cadre -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('cadrage') }}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span class="font-weight-bold">CADRAGE</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Hypothèses -->
-            <li class="nav-item bg-green-500">
-                <a class="nav-link" href="{{ route('hypotheses') }}">
-                    <i class="fas fa-fw fa-chart-line"></i>
-                    <span class="font-weight-bold">HYPOTHESES</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Solver -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('solver') }}">
-                    <i class="fas fa-fw fa-cogs"></i>
-                    <span class="font-weight-bold">SOLVER</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Recettes -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('recettes') }}">
-                    <i class="fas fa-fw fa-utensils"></i>
-                    <span class="font-weight-bold">RECETTES</span>
-                </a>
-            </li>
             <!-- Nav Item - Formulaire -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('formulaire') }}">
                     <i class="fas fa-fw fa-pencil-alt"></i> <!-- Nouvelle icône pour Formulaire -->
-                    <span class="font-weight-bold">FORMULAIRE</span>
+                    <span class="font-weight-bold">RETOUR FISCAL</span>
                 </a>
             </li>
 
@@ -109,12 +78,19 @@
                     <span class="font-weight-bold">HISTORIQUES</span>
                 </a>
             </li>
+            <!-- Nav Item - Profil -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('profil') }}">
+                    <i class="fas fa-fw fa-user"></i> <!-- Icône pour Profil -->
+                    <span class="font-weight-bold">PROFIL</span>
+                </a>
+            </li>
             <!-- Nav Item - DECONNEXION -->
             <li class="nav-item hover:bg-red-500">
                 <form class="nav-link" action="{{ route('logout') }}" method="POST">
                     @csrf
                     <i class="fas fa-sign-out-alt"></i>
-                    <input class="font-weight-bold text-center" type="submit" value="DÉCONNEXION" />
+                    <input class="text-center font-weight-bold" type="submit" value="DÉCONNEXION" />
                 </form>
             </li>
 
@@ -125,7 +101,7 @@
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                <button class="border-0 rounded-circle" id="sidebarToggle"></button>
             </div>
 
         </ul>
@@ -138,28 +114,16 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="mb-4 bg-white shadow navbar navbar-expand navbar-light topbar static-top">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <button id="sidebarToggleTop" class="mr-3 btn btn-link d-md-none rounded-circle">
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    {{-- <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> --}}
 
-                    <p class="font-black text-xs lg:9xl text-green-700"><span class="text-red-500">O</span>UTILS DE
+
+                    <p class="text-xs font-black text-green-700 lg:9xl"><span class="text-red-500">O</span>UTILS DE
                         <span class="text-red-500">P</span>REVISION DES
                         <span class="text-red-500">R</span>ECETTES <span class="text-red-500">N</span>ON <span
                             class="text-red-500">F</span>ISCALES (<span class="text-red-500">OPRNF</span>)
@@ -167,7 +131,7 @@
 
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="ml-auto navbar-nav">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
@@ -176,11 +140,11 @@
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                            <div class="p-3 shadow dropdown-menu dropdown-menu-right animated--grow-in"
                                 aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
+                                <form class="mr-auto form-inline w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
+                                        <input type="text" class="border-0 form-control bg-light small"
                                             placeholder="Search for..." aria-label="Search"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
@@ -198,7 +162,7 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <h3 class="nav-link dropdown-toggle">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                <span class="mr-2 text-gray-600 d-none d-lg-inline small">
                                     @auth
                                         {{ Auth::user()->name }} <!-- Affiche le nom de l'utilisateur connecté -->
                                         <!-- Affiche la commune de l'utilisateur connecté, si elle existe -->
@@ -214,24 +178,24 @@
                                 <img class="img-profile rounded-circle" src="{{ asset('images/logo1.ico') }}">
                             </h3>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            <div class="shadow dropdown-menu dropdown-menu-right animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="mr-2 text-gray-400 fas fa-user fa-sm fa-fw"></i>
                                     Profile
                                 </a>
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="mr-2 text-gray-400 fas fa-cogs fa-sm fa-fw"></i>
                                     Settings
                                 </a>
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="mr-2 text-gray-400 fas fa-list fa-sm fa-fw"></i>
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal"
                                     data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="mr-2 text-gray-400 fas fa-sign-out-alt fa-sm fa-fw"></i>
                                     Logout
                                 </a>
                             </div>
@@ -245,48 +209,6 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Communes au Bénin -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Communes</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">77</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-fw fa-city fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Départements au Bénin -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Départements</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-fw fa-map-signs fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
 
 
                     <!-- Content Row -->
@@ -294,9 +216,9 @@
                         <div class="container mt-4">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8 col-md-10 col-sm-12">
-                                    <div class="card shadow mb-4">
-                                        <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-green-500 font-extrabold text-xl">
+                                    <div class="mb-4 shadow card">
+                                        <div class="py-3 card-header">
+                                            <h6 class="m-0 text-xl font-extrabold text-green-500 font-weight-bold">
                                                 Formulaire d'importation et
                                                 sélection</h6>
                                         </div>
@@ -304,18 +226,18 @@
                                             <form>
                                                 <!-- Champ 1 obligatoire à remplir avant d'afficher les autres -->
                                                 <div class="mb-3">
-                                                    <label for="userField1 " class="form-label font-extrabold">ANNEE
+                                                    <label for="userField1 " class="font-extrabold form-label">ANNEE
                                                         HISTORIQUE</label>
                                                     <input type="text" class="form-control" id="userField1"
                                                         required placeholder="2023">
-                                                    <p class="text-red-500 font-bold">NB: il s'agit de la dernière
+                                                    <p class="font-bold text-red-500">NB: il s'agit de la dernière
                                                         année des
                                                         donnée historiques</p>
                                                 </div>
 
                                                 <!-- Champ 2 obligatoire à remplir avant d'afficher les autres -->
                                                 <div class="mb-3">
-                                                    <label for="userField2" class="form-label font-extrabold">ANNEE DE
+                                                    <label for="userField2" class="font-extrabold form-label">ANNEE DE
                                                         PROJECTION</label>
                                                     <input type="text" class="form-control" id="userField2"
                                                         required placeholder="2024">
@@ -326,7 +248,7 @@
 
                                                     <!-- Champ pour importer un fichier 1 -->
                                                     <div class="mb-3">
-                                                        <label for="fileInput1" class="form-label font-extrabold">BASE
+                                                        <label for="fileInput1" class="font-extrabold form-label">BASE
                                                             DE
                                                             DONNEE</label>
                                                         <input type="file" class="form-control" id="fileInput1"
@@ -336,7 +258,7 @@
                                                     <!-- Champ pour importer un fichier 2 -->
                                                     <div class="mb-3">
                                                         <label for="fileInput2"
-                                                            class="form-label font-extrabold">RECETTES NON
+                                                            class="font-extrabold form-label">RECETTES NON
                                                             FISCALES</label>
                                                         <input type="file" class="form-control" id="fileInput2"
                                                             accept=".csv, .xlsx, .xls">
@@ -345,7 +267,7 @@
                                                     <!-- Champ de sélection 1 -->
                                                     <div class="mb-3">
                                                         <label for="selectOption1"
-                                                            class="form-label font-extrabold">APPROCHE DE
+                                                            class="font-extrabold form-label">APPROCHE DE
                                                             PROJECTION DES RECETTES NON FISCALES</label>
                                                         <select class="form-select form-control" id="selectOption1"
                                                             required>
@@ -360,7 +282,7 @@
                                                     <!-- Champ de sélection 2 -->
                                                     <div class="mb-3">
                                                         <label for="selectOption2"
-                                                            class="form-label font-extrabold">SCENARIO</label>
+                                                            class="font-extrabold form-label">SCENARIO</label>
                                                         <select class="form-select form-control" id="selectOption2"
                                                             required>
                                                             <option value="" disabled selected>--Sélectionner un
@@ -375,7 +297,7 @@
                                                     <!-- Bouton Suivant -->
                                                     <div class="mb-3">
                                                         <button type="submit"
-                                                            class="btn btn-primary w-100 font-bold">Suivant</button>
+                                                            class="font-bold btn btn-primary w-100">Suivant</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -394,9 +316,9 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
+                    <div class="my-auto text-center copyright">
                         <span>Copyright &copy; Instaad Bénin 2025</span>
                     </div>
                 </div>
@@ -410,7 +332,7 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    <a class="rounded scroll-to-top" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 

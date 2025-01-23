@@ -14,7 +14,7 @@
     <title>OPRNF</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}")}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -56,13 +56,12 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Accueil -->
-            <li class="nav-item">
+            <li class=" nav-item">
                 <a class="nav-link" href="{{ route('commune.dashboard') }}">
                     <i class="fas fa-fw fa-home"></i>
                     <span class="font-weight-bold">ACCUEIL</span>
                 </a>
             </li>
-
 
             <!-- Nav Item - Formulaire -->
             <li class="nav-item">
@@ -80,12 +79,14 @@
                 </a>
             </li>
             <!-- Nav Item - Profil -->
-            <li class=" nav-item">
+            <li class="bg-green-500 nav-item">
                 <a class="nav-link" href="{{ route('profil') }}">
                     <i class="fas fa-fw fa-user"></i> <!-- Icône pour Profil -->
                     <span class="font-weight-bold">PROFIL</span>
                 </a>
             </li>
+
+
             <!-- Nav Item - DECONNEXION -->
             <li class="nav-item hover:bg-red-500">
                 <form class="nav-link" action="{{ route('logout') }}" method="POST">
@@ -94,6 +95,7 @@
                     <input class="text-center font-weight-bold" type="submit" value="DÉCONNEXION" />
                 </form>
             </li>
+
 
 
 
@@ -121,6 +123,7 @@
                     <button id="sidebarToggleTop" class="mr-3 btn btn-link d-md-none rounded-circle">
                         <i class="fa fa-bars"></i>
                     </button>
+
 
                     <p class="text-xs font-black text-green-700 lg:9xl"><span class="text-red-500">O</span>UTILS DE
                         <span class="text-red-500">P</span>REVISION DES
@@ -176,6 +179,8 @@
                                 </span>
                                 <img class="img-profile rounded-circle" src="{{ asset('images/logo1.ico') }}">
                             </h3>
+
+
                             <!-- Dropdown - User Information -->
                             <div class="shadow dropdown-menu dropdown-menu-right animated--grow-in"
                                 aria-labelledby="userDropdown">
@@ -209,69 +214,14 @@
                 <div class="container-fluid">
 
 
+
                     <!-- Content Row -->
-                    <div class="flex flex-col p-0 rounded-md row lg:flex-row md:flex-row md:p-2 lg:p-4">
-                        <!-- Liste des recettes non fiscales -->
-                        <div class="mb-4 col-lg-5">
-                            <div class="mb-4 shadow card">
-                                <div class="py-3 card-header">
-                                    <h6 class="m-0 text-xl font-extrabold text-green-500 font-weight-bold">Liste des
-                                        recettes non fiscales</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p class="mb-4">Voici une liste des différentes recettes non fiscales disponibles
-                                        dans le système. Vous pouvez cliquer sur chaque recette pour la sélectionner.
-                                    </p>
-                                    <div class="list" id="available">
-                                        <!-- Liste statique de recettes non fiscales -->
-                                        <div class="item" onclick="moveToSelected(this)" data-id="1">Recette Non
-                                            Fiscale 1</div>
-                                        <div class="item" onclick="moveToSelected(this)" data-id="2">Recette Non
-                                            Fiscale 2</div>
-                                        <div class="item" onclick="moveToSelected(this)" data-id="3">Recette Non
-                                            Fiscale 3</div>
-                                        <div class="item" onclick="moveToSelected(this)" data-id="4">Recette Non
-                                            Fiscale 4</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="row">
+                        <div class="mb-4 col-12">
 
-                        <!-- Flèche de séparation -->
-                        <div class="text-center col-lg-2 align-self-center">
-                            <div class="mb-4">
-                                <i class="fas fa-arrow-right fa-3x"></i>
-                            </div>
-                            <div>
-                                <i class="fas fa-arrow-left fa-3x"></i>
-                            </div>
-                        </div>
 
-                        <!-- Liste des recettes non fiscales sélectionnées -->
-                        <div class="mb-4 col-lg-5">
-                            <div class="mb-4 shadow card">
-                                <div class="py-3 card-header">
-                                    <h6 class="m-0 text-xl font-extrabold text-green-500 font-weight-bold">Liste des
-                                        recettes non fiscales sélectionnées</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p class="mb-4">Voici la liste des recettes que vous avez sélectionnées. Vous
-                                        pouvez désélectionner une recette en cliquant dessus.</p>
-                                    <div class="list" id="selected">
-                                        <!-- Liste des recettes sélectionnées (actuellement vide) -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Actions -->
-                        <div class="flex flex-row items-center mx-auto mb-4 space-y-4 row col-lg-12 justify-evenly">
-                            <button type="button" class="w-full btn btn-primary">Modifier</button>
-                            <button type="button" class="w-full btn btn-success">Rapatrier les recettes</button>
-                            <button type="button" class="w-full btn btn-secondary">Suivant</button>
                         </div>
                     </div>
-
 
 
                 </div>
@@ -321,7 +271,6 @@
         </div>
     </div>
 
-
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('dashboard/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -338,34 +287,6 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('dashboard/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('dashboard/js/demo/chart-pie-demo.js') }}"></script>
-    <script>
-        // Fonction pour déplacer un élément de la liste disponible vers la liste sélectionnée, et vice versa
-        function moveToSelected(element) {
-            const parent = element.parentElement.id; // Identifier la liste actuelle
-            const targetList = parent === "available" ? "selected" : "available"; // Déterminer la liste cible
-            document.getElementById(targetList).appendChild(element); // Déplacer l'élément vers la liste cible
-        }
-    </script>
-
-    <style>
-        .list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .item {
-            padding: 10px;
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .item:hover {
-            background-color: #e0e0e0;
-        }
-    </style>
 
 </body>
 

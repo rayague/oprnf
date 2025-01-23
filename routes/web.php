@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/recettes', [CommuneController::class,'recettes'])->name('recettes');
     Route::get('/formulaire', [CommuneController::class,'formulaire'])->name('formulaire');
     Route::get('/historiques', [CommuneController::class,'historiques'])->name('historiques');
+    Route::get('/profil', [CommuneController::class,'profil'])->name('profil');
 
 
 });

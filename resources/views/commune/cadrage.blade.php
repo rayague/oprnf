@@ -63,44 +63,11 @@
                     <span class="font-weight-bold">ACCUEIL</span>
                 </a>
             </li>
-
-
-            <!-- Nav Item - Cadre -->
-            <li class="bg-green-500 nav-item">
-                <a class="nav-link" href="{{ route('cadrage') }}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span class="font-weight-bold">CADRAGE</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Hypothèses -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('hypotheses') }}">
-                    <i class="fas fa-fw fa-chart-line"></i>
-                    <span class="font-weight-bold">HYPOTHESES</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Solver -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('solver') }}">
-                    <i class="fas fa-fw fa-cogs"></i>
-                    <span class="font-weight-bold">SOLVER</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Recettes -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('recettes') }}">
-                    <i class="fas fa-fw fa-utensils"></i>
-                    <span class="font-weight-bold">RECETTES</span>
-                </a>
-            </li>
             <!-- Nav Item - Formulaire -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('formulaire') }}">
                     <i class="fas fa-fw fa-pencil-alt"></i> <!-- Nouvelle icône pour Formulaire -->
-                    <span class="font-weight-bold">FORMULAIRE</span>
+                    <span class="font-weight-bold">RETOUR FISCAL</span>
                 </a>
             </li>
 
@@ -109,6 +76,13 @@
                 <a class="nav-link" href="{{ route('historiques') }}">
                     <i class="fas fa-fw fa-history"></i> <!-- Nouvelle icône pour Historiques -->
                     <span class="font-weight-bold">HISTORIQUES</span>
+                </a>
+            </li>
+            <!-- Nav Item - Profil -->
+            <li class=" nav-item">
+                <a class="nav-link" href="{{ route('profil') }}">
+                    <i class="fas fa-fw fa-user"></i> <!-- Icône pour Profil -->
+                    <span class="font-weight-bold">PROFIL</span>
                 </a>
             </li>
             <!-- Nav Item - DECONNEXION -->
@@ -147,19 +121,6 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    {{-- <form
-                        class="my-2 mr-auto d-none d-sm-inline-block form-inline ml-md-3 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="border-0 form-control bg-light small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> --}}
 
                     <p class="text-xs font-black text-green-700 lg:9xl"><span class="text-red-500">O</span>UTILS DE
                         <span class="text-red-500">P</span>REVISION DES
@@ -247,46 +208,6 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Communes au Bénin -->
-                        <div class="mb-4 col-xl-3 col-md-6">
-                            <div class="py-2 shadow card border-left-primary h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="mr-2 col">
-                                            <div class="mb-1 text-xs font-weight-bold text-primary text-uppercase">
-                                                Communes</div>
-                                            <div class="mb-0 text-gray-800 h5 font-weight-bold">77</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="text-gray-300 fas fa-fw fa-city fa-2x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Départements au Bénin -->
-                        <div class="mb-4 col-xl-3 col-md-6">
-                            <div class="py-2 shadow card border-left-success h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="mr-2 col">
-                                            <div class="mb-1 text-xs font-weight-bold text-success text-uppercase">
-                                                Départements</div>
-                                            <div class="mb-0 text-gray-800 h5 font-weight-bold">12</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="text-gray-300 fas fa-fw fa-map-signs fa-2x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
 
 
                     <!-- Content Row -->
