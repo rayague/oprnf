@@ -36,15 +36,15 @@
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center font-bold" href="index.html">
+            <a class="font-bold sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('images/logo2.png') }}" class="img-thumbnail w-50" alt="">
                 </div>
-                <div class="sidebar-brand-text mx-3">OPRNF</div>
+                <div class="mx-3 sidebar-brand-text">OPRNF</div>
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+            <hr class="my-0 sidebar-divider">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
@@ -66,7 +66,7 @@
 
 
             <!-- Nav Item - Cadre -->
-            <li class="nav-item bg-green-500">
+            <li class="bg-green-500 nav-item">
                 <a class="nav-link" href="{{ route('cadrage') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span class="font-weight-bold">CADRAGE</span>
@@ -116,7 +116,7 @@
                 <form class="nav-link" action="{{ route('logout') }}" method="POST">
                     @csrf
                     <i class="fas fa-sign-out-alt"></i>
-                    <input class="font-weight-bold text-center" type="submit" value="DÉCONNEXION" />
+                    <input class="text-center font-weight-bold" type="submit" value="DÉCONNEXION" />
                 </form>
             </li>
 
@@ -127,7 +127,7 @@
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                <button class="border-0 rounded-circle" id="sidebarToggle"></button>
             </div>
 
         </ul>
@@ -140,18 +140,18 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="mb-4 bg-white shadow navbar navbar-expand navbar-light topbar static-top">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <button id="sidebarToggleTop" class="mr-3 btn btn-link d-md-none rounded-circle">
                         <i class="fa fa-bars"></i>
                     </button>
 
                     <!-- Topbar Search -->
                     {{-- <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        class="my-2 mr-auto d-none d-sm-inline-block form-inline ml-md-3 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            <input type="text" class="border-0 form-control bg-light small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
@@ -161,7 +161,7 @@
                         </div>
                     </form> --}}
 
-                    <p class="font-black text-xs lg:9xl text-green-700"><span class="text-red-500">O</span>UTILS DE
+                    <p class="text-xs font-black text-green-700 lg:9xl"><span class="text-red-500">O</span>UTILS DE
                         <span class="text-red-500">P</span>REVISION DES
                         <span class="text-red-500">R</span>ECETTES <span class="text-red-500">N</span>ON <span
                             class="text-red-500">F</span>ISCALES (<span class="text-red-500">OPRNF</span>)
@@ -169,7 +169,7 @@
 
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="ml-auto navbar-nav">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
@@ -178,11 +178,11 @@
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                            <div class="p-3 shadow dropdown-menu dropdown-menu-right animated--grow-in"
                                 aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
+                                <form class="mr-auto form-inline w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
+                                        <input type="text" class="border-0 form-control bg-light small"
                                             placeholder="Search for..." aria-label="Search"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
@@ -200,7 +200,7 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <h3 class="nav-link dropdown-toggle">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                <span class="mr-2 text-gray-600 d-none d-lg-inline small">
                                     @auth
                                         {{ Auth::user()->name }} <!-- Affiche le nom de l'utilisateur connecté -->
                                         <!-- Affiche la commune de l'utilisateur connecté, si elle existe -->
@@ -216,24 +216,24 @@
                                 <img class="img-profile rounded-circle" src="{{ asset('images/logo1.ico') }}">
                             </h3>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            <div class="shadow dropdown-menu dropdown-menu-right animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="mr-2 text-gray-400 fas fa-user fa-sm fa-fw"></i>
                                     Profile
                                 </a>
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="mr-2 text-gray-400 fas fa-cogs fa-sm fa-fw"></i>
                                     Settings
                                 </a>
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="mr-2 text-gray-400 fas fa-list fa-sm fa-fw"></i>
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal"
                                     data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="mr-2 text-gray-400 fas fa-sign-out-alt fa-sm fa-fw"></i>
                                     Logout
                                 </a>
                             </div>
@@ -251,17 +251,17 @@
                     <div class="row">
 
                         <!-- Communes au Bénin -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="mb-4 col-xl-3 col-md-6">
+                            <div class="py-2 shadow card border-left-primary h-100">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        <div class="mr-2 col">
+                                            <div class="mb-1 text-xs font-weight-bold text-primary text-uppercase">
                                                 Communes</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">77</div>
+                                            <div class="mb-0 text-gray-800 h5 font-weight-bold">77</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-fw fa-city fa-2x text-gray-300"></i>
+                                            <i class="text-gray-300 fas fa-fw fa-city fa-2x"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -269,53 +269,17 @@
                         </div>
 
                         <!-- Départements au Bénin -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
+                        <div class="mb-4 col-xl-3 col-md-6">
+                            <div class="py-2 shadow card border-left-success h-100">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        <div class="mr-2 col">
+                                            <div class="mb-1 text-xs font-weight-bold text-success text-uppercase">
                                                 Départements</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
+                                            <div class="mb-0 text-gray-800 h5 font-weight-bold">12</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-fw fa-map-signs fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Arrondissements au Bénin -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Arrondissements</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">546</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-fw fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Villes au Bénin -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Villes</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-fw fa-building fa-2x text-gray-300"></i>
+                                            <i class="text-gray-300 fas fa-fw fa-map-signs fa-2x"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -327,11 +291,11 @@
 
                     <!-- Content Row -->
                     <div class="row">
-                        <div class="col-lg-6 mb-4">
+                        <div class="mb-4 col-lg-6">
 
                             <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
+                            <div class="mb-4 shadow card">
+                                <div class="py-3 card-header">
                                     <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
                                 </div>
                                 <div class="card-body">
@@ -354,9 +318,9 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
+                    <div class="my-auto text-center copyright">
                         <span>Copyright &copy; Instaad Bénin 2025</span>
                     </div>
                 </div>
@@ -370,7 +334,7 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    <a class="rounded scroll-to-top" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 

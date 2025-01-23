@@ -26,16 +26,16 @@
     <div class="flex items-center justify-center min-h-screen">
 
         <!-- Form Card -->
-        <div class="w-full sm:w-96 bg-white p-8 rounded-lg shadow-lg">
+        <div class="w-full p-8 bg-white rounded-lg shadow-lg sm:w-96">
 
             <!-- Logo -->
-            <div class="text-center mb-8">
+            <div class="mb-8 text-center">
                 <img src="{{ asset('images/logo5.png') }}" class="w-32 mx-auto" alt="Logo">
             </div>
 
             <!-- Success or Error Message -->
             @if (session('status'))
-                <div class="bg-green-100 text-green-600 p-4 rounded-md mb-4">
+                <div class="p-4 mb-4 text-green-600 bg-green-100 rounded-md">
                     {{ session('status') }}
                 </div>
             @endif
@@ -48,29 +48,24 @@
                 <div class="mb-4">
                     <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
                     <input id="password" name="password" type="password" required
-                        class="w-full mt-1 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-sky-500"
+                        class="w-full p-3 mt-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-sky-500"
                         placeholder="Entrez votre mot de passe">
                     @error('password')
-                        <div class="text-red-600 text-sm mt-2">{{ $message }}</div>
+                        <div class="mt-2 text-sm text-red-600">{{ $message }}</div>
                     @enderror
                 </div>
 
-                <!-- Remember Me -->
-                <div class="flex items-center mb-4">
-                    <input id="remember_me" type="checkbox" name="remember" class="mr-2 rounded">
-                    <label for="remember_me" class="text-sm text-gray-600">Se souvenir de moi</label>
-                </div>
 
                 <!-- Submit Button -->
                 <div class="flex items-center justify-between mb-4">
                     <button type="submit"
-                        class="w-full bg-sky-600 text-white font-bold py-3 px-4 rounded-md hover:bg-sky-700 focus:ring-2 focus:ring-sky-500">
+                        class="w-full px-4 py-3 font-bold text-white rounded-md bg-sky-600 hover:bg-sky-700 focus:ring-2 focus:ring-sky-500">
                         Se connecter
                     </button>
                 </div>
 
                 <!-- Forgot Password Link -->
-                {{-- <div class="text-center text-sm">
+                {{-- <div class="text-sm text-center">
                     @if (Route::has('password.request'))
                         <a href="{{ route('password.request') }}" class="text-sky-600 hover:text-sky-700">Mot de passe
                             oublié ?</a>
