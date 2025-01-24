@@ -131,29 +131,7 @@
                     <!-- Topbar Navbar -->
                     <ul class="ml-auto navbar-nav">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="p-3 shadow dropdown-menu dropdown-menu-right animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="mr-auto form-inline w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="border-0 form-control bg-light small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -187,49 +165,64 @@
                 <div class="container-fluid">
 
                     <!-- Content Row -->
-                    <div class="row">
-                        <div class="mx-auto my-4 col-lg-10">
+                    <!-- Content Row -->
+                    <button type="button" onclick="window.history.back()"
+                        class="px-4 py-2 my-4 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        Retour
+                    </button>
+                    <div class="flex flex-wrap justify-between space-y-4 row">
 
-                            <!-- Afficher le message de succès -->
-                            @if (session('status'))
-                                <div class="alert alert-success">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
+                        <!-- Première div - Une ligne -->
+                        <div class="flex items-center w-full p-4 space-x-4 bg-white rounded-lg shadow-md md:w-auto">
+                            <!-- Titre -->
+                            <h3 class="text-lg font-semibold text-gray-900">Retour Fiscal</h3>
 
-                            <form class="p-4 bg-white rounded-md shadow" action="{{ route('previsions.store') }}"
-                                method="POST" enctype="multipart/form-data">
-                                @csrf
+                            <!-- Message -->
+                            <p class="text-red-500">Ceci est un message d'exemple envoyé à l'utilisateur.</p>
 
-                                <div class="mb-3">
-                                    <label for="formFile" class="font-bold form-label">Selectionner le fichier</label>
-                                    <input class="bg-gray-100 form-control" type="file" name="fichier"
-                                        id="formFile" required>
-                                </div>
+                            <!-- Lien vers le fichier -->
+                            <a href="path/to/file1.docx" class="p-2 text-white bg-gray-500 rounded shadow">Télécharger
+                                le
+                                fichier Word</a>
 
-                                <div class="mb-3">
-                                    <label for="exampleFormControlTextarea1"
-                                        class="font-bold form-label">Observations</label>
-                                    <textarea class="bg-gray-100 form-control" id="exampleFormControlTextarea1" name="observations" rows="5"
-                                        required></textarea>
-                                </div>
-
-                                <div class="col-12">
-                                    <button class="font-bold btn btn-primary w-100" type="submit">Soumettre</button>
-                                </div>
-                            </form>
-
-                            <!-- Actions -->
-                            <div
-                                class="flex flex-row items-center justify-center w-full mx-auto my-6 space-x-6 col-lg-12">
-                                <a href="{{ route('historiques') }}" class="w-1/2 font-bold btn btn-success">
-                                    Voir vos
-                                    Historiques</a>
-                                <a href="{{ route('retourFiscal') }}" class="w-1/2 font-bold btn btn-danger">Vos
-                                    Retours
-                                    Fiscals</a>
-                            </div>
+                            <!-- Heure d'envoi -->
+                            <p class="text-sm text-gray-500">Envoyé le : 2025-01-23 10:00:00</p>
                         </div>
+
+                        <!-- Deuxième div - Une ligne -->
+                        <div class="flex items-center w-full p-4 space-x-4 bg-white rounded-lg shadow-md md:w-auto">
+                            <!-- Titre -->
+                            <h3 class="text-lg font-semibold text-gray-900">Retour Fiscal</h3>
+
+                            <!-- Message -->
+                            <p class="text-red-500">Voici un autre message avec des informations importantes.</p>
+
+                            <!-- Lien vers le fichier -->
+                            <a href="path/to/file2.xlsx" class="p-2 text-white bg-gray-500 rounded shadow">Télécharger
+                                le
+                                fichier Excel</a>
+
+                            <!-- Heure d'envoi -->
+                            <p class="text-sm font-bold text-gray-500">Envoyé le : 2025-01-22 15:30:00</p>
+                        </div>
+
+                        <!-- Troisième div - Une ligne -->
+                        <div class="flex items-center w-full p-4 space-x-4 bg-white rounded-lg shadow-md md:w-auto">
+                            <!-- Titre -->
+                            <h3 class="text-lg font-semibold text-gray-900">Retour Fiscal</h3>
+
+                            <!-- Message -->
+                            <p class="text-red-500">Ce message est une notification de mise à jour.</p>
+
+                            <!-- Lien vers le fichier -->
+                            <a href="path/to/file3.docx" class="p-2 text-white bg-gray-500 rounded shadow">Télécharger
+                                le
+                                fichier Word</a>
+
+                            <!-- Heure d'envoi -->
+                            <p class="text-sm text-gray-500">Envoyé le : 2025-01-21 12:45:00</p>
+                        </div>
+
                     </div>
 
 

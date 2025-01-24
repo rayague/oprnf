@@ -270,9 +270,7 @@
                                                         passe</h2>
                                                     <div
                                                         class="p-2 bg-gray-200 border-2 border-gray-300 rounded border-1">
-                                                        {{-- {{ $users->userPassword-> password }} --}}
-
-                                                        <h3 class="m-1 font-bold select-none">motdepasse</h3>
+                                                        <h3 class="m-1 font-bold select-none">***********</h3>
                                                     </div>
                                                 </div>
 
@@ -347,7 +345,7 @@
     </div>
     <!-- End of Page Wrapper -->
 
-    <!-- Modal pour changer le mot de passe -->
+    {{-- <!-- Modal pour changer le mot de passe -->
     <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog"
         aria-labelledby="changePasswordModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -420,7 +418,86 @@
                 </form>
             </div>
         </div>
+    </div> --}}
+
+    <!-- Modal pour changer le mot de passe -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog"
+        aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="text-white modal-header bg-sky-600">
+                    <h5 class="modal-title" id="changePasswordModalLabel">Changer votre mot de passe</h5>
+                    <button type="button" class="text-white close" data-dismiss="modal" aria-label="Fermer">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('password.update') }}" method="POST">
+                        @csrf
+                        @method('PUT') <!-- Ajout de la méthode PUT ici -->
+
+                        <!-- Ancien mot de passe -->
+                        <div class="mb-4">
+                            <label for="current_password" class="block text-sm font-medium text-gray-700">Ancien mot
+                                de passe</label>
+                            <div class="relative">
+                                <input type="password" id="current_password" name="current_password" required
+                                    class="block w-full px-3 py-3 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    placeholder="Entrez votre ancien mot de passe">
+                                <button type="button"
+                                    class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+                                    onclick="toggleVisibility('current_password')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Nouveau mot de passe -->
+                        <div class="mb-4">
+                            <label for="new_password" class="block text-sm font-medium text-gray-700">Nouveau mot de
+                                passe</label>
+                            <div class="relative">
+                                <input type="password" id="new_password" name="new_password" required
+                                    class="block w-full px-3 py-3 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    placeholder="Entrez votre nouveau mot de passe">
+                                <button type="button"
+                                    class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+                                    onclick="toggleVisibility('new_password')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Confirmer le nouveau mot de passe -->
+                        <div class="mb-4">
+                            <label for="new_password_confirmation"
+                                class="block text-sm font-medium text-gray-700">Confirmer le nouveau mot de
+                                passe</label>
+                            <div class="relative">
+                                <input type="password" id="new_password_confirmation"
+                                    name="new_password_confirmation" required
+                                    class="block w-full px-3 py-3 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    placeholder="Confirmez votre nouveau mot de passe">
+                                <button type="button"
+                                    class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+                                    onclick="toggleVisibility('new_password_confirmation')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="text-white btn btn-primary bg-sky-600 hover:bg-sky-700">Enregistrer
+                        les modifications</button>
+                </div>
+                </form>
+
+            </div>
+        </div>
     </div>
+
 
 
     <!-- Scroll to Top Button-->

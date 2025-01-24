@@ -197,7 +197,7 @@
                                 <div class="col-lg-8 col-md-10 col-sm-12">
                                     <div class="mb-4 shadow card">
                                         <div class="py-3 card-header">
-                                            <h6 class="m-0 text-xl font-extrabold text-green-500 font-weight-bold">
+                                            <h6 class="m-0 text-xl font-extrabold text-gray-600 font-weight-bold">
                                                 Formulaire d'importation et
                                                 sélection</h6>
                                         </div>
