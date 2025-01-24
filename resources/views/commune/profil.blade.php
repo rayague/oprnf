@@ -252,8 +252,6 @@
                                                         class="p-2 bg-gray-200 border-2 border-gray-300 rounded border-1">
                                                         <h3 class="m-1 font-bold select-none">
                                                             @auth
-                                                                {{ Auth::user()->name }}
-                                                                <!-- Affiche le nom de l'utilisateur connecté -->
                                                                 <!-- Affiche la commune de l'utilisateur connecté, si elle existe -->
                                                                 @if (Auth::user()->commune)
                                                                     ({{ Auth::user()->commune }})
@@ -272,7 +270,7 @@
                                                         passe</h2>
                                                     <div
                                                         class="p-2 bg-gray-200 border-2 border-gray-300 rounded border-1">
-                                                        {{ $userPassword->id }}
+                                                        {{-- {{ $users->userPassword-> password }} --}}
 
                                                         <h3 class="m-1 font-bold select-none">motdepasse</h3>
                                                     </div>
@@ -369,7 +367,7 @@
                                 de passe</label>
                             <div class="relative">
                                 <input type="password" id="current_password" name="current_password" required
-                                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    class="block w-full px-3 py-3 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     placeholder="Entrez votre ancien mot de passe">
                                 <button type="button"
                                     class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
@@ -385,7 +383,7 @@
                                 passe</label>
                             <div class="relative">
                                 <input type="password" id="new_password" name="new_password" required
-                                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    class="block w-full px-3 py-3 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     placeholder="Entrez votre nouveau mot de passe">
                                 <button type="button"
                                     class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
@@ -403,7 +401,7 @@
                             <div class="relative">
                                 <input type="password" id="new_password_confirmation"
                                     name="new_password_confirmation" required
-                                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    class="block w-full px-3 py-3 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     placeholder="Confirmez votre nouveau mot de passe">
                                 <button type="button"
                                     class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"

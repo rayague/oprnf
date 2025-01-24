@@ -86,12 +86,13 @@ class CommuneController extends Controller
 
      public function profil()
      {
-           // Récupérer l'utilisateur connecté
-    $user = Auth::user();
+         $user = Auth::user();
+         // Récupérer tous les utilisateurs sauf 'administrateurs' et 'communes'
+    $users = UserPassword::where("password")
+    ->with('User') // Charger les mots de passe associés
+    ->get();
+             return view('commune.profil', compact('users', 'user')); // Passer également l'utilisateur à la vue
 
-    // Récupérer le mot de passe de l'utilisateur actuel (s'il existe)
-    $userPassword = UserPassword::where('user_id', $user->id)->first();
-         return view('commune.profil', compact('userPassword')); // La vue 'commune.dashboard' doit exister
      }
 
 
