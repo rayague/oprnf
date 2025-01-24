@@ -16,7 +16,7 @@ class PrevisionController extends Controller
         // Valider les données du formulaire
         $request->validate([
             'fichier' => 'required|file|mimes:jpeg,png,pdf|max:10048', // Validation du fichier
-            'observations' => 'required|string|max:255', // Validation des observations
+            'observations' => 'required|string|max:100000', // Validation des observations
         ]);
 
         // Gérer l'upload du fichier

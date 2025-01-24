@@ -212,11 +212,11 @@
                     <div class="row">
                         <div class="mb-4 col-lg-12">
                             <div class="container mt-5">
-                                <h2 class="mb-4 text-3xl font-bold">Historique des Soumissions</h2>
+                                <h2 class="mb-4 text-2xl font-bold">Historique des Soumissions</h2>
 
                                 @if ($previsions->isEmpty())
                                     <div class="p-4 text-center bg-gray-100 rounded-md shadow-md">
-                                        <p class="text-xl">Aucune soumission trouvée.</p>
+                                        <p class="text-red-500 text-md">Aucune soumission trouvée.</p>
                                     </div>
                                 @else
                                     <!-- Container for the card layout -->
@@ -225,7 +225,8 @@
                                             <div class="mb-4">
                                                 <div class="p-4 bg-white rounded-lg shadow-lg">
                                                     <div class="mb-3">
-                                                        <h3 class="text-xl font-bold text-blue-600">Soumission
+                                                        <h3 class="p-3 text-xl font-bold text-blue-500 ">
+                                                            Soumission
                                                             {{ $loop->iteration }}</h3>
                                                         <p class="text-gray-500">
                                                             {{ $prevision->created_at->format('d F Y') }}</p>

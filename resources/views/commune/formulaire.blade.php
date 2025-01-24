@@ -219,6 +219,16 @@
                                 </div>
                             </form>
 
+                            <!-- Actions -->
+                            <div
+                                class="flex flex-row items-center justify-center w-full mx-auto my-6 space-x-6 col-lg-12">
+                                <a href="{{ route('historiques') }}" class="w-1/2 font-bold btn btn-success">
+                                    Voir vos
+                                    Historiques</a>
+                                <a href="{{ route('historiques') }}" class="w-1/2 font-bold btn btn-danger">Vos
+                                    Retours
+                                    Fiscals</a>
+                            </div>
                         </div>
                     </div>
 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('previsions', function (Blueprint $table) {
             $table->id();
             $table->string('fichier'); // Le nom du fichier
-            $table->text('observations'); // Observations
+            $table->longText('observations'); // Observations
             $table->unsignedBigInteger('user_id'); // ID de l'utilisateur
             $table->timestamps();
 
