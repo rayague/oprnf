@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Recette;
 use App\Models\Prevision;
 use Illuminate\Http\Request;
 use App\Models\RecettesSelectionnee;
+use App\Models\UserPassword;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -84,8 +86,12 @@ class CommuneController extends Controller
 
      public function profil()
      {
-         // Logique pour l'affichage du tableau de bord commune
-         return view('commune.profil'); // La vue 'commune.dashboard' doit exister
+           // Récupérer l'utilisateur connecté
+    $user = Auth::user();
+
+    // Récupérer le mot de passe de l'utilisateur actuel (s'il existe)
+    $userPassword = UserPassword::where('user_id', $user->id)->first();
+         return view('commune.profil', compact('userPassword')); // La vue 'commune.dashboard' doit exister
      }
 
 

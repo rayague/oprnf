@@ -88,11 +88,10 @@
 
             <!-- Nav Item - DECONNEXION -->
             <li class="nav-item hover:bg-red-500">
-                <form class="nav-link" action="{{ route('logout') }}" method="POST">
-                    @csrf
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt"></i>
-                    <input class="text-center font-weight-bold" type="submit" value="DÉCONNEXION" />
-                </form>
+                    <span class="font-weight-bold">DÉCONNEXION</span>
+                </a>
             </li>
 
 
@@ -179,29 +178,6 @@
                                 <img class="img-profile rounded-circle" src="{{ asset('images/logo1.ico') }}">
                             </h3>
 
-
-                            <!-- Dropdown - User Information -->
-                            <div class="shadow dropdown-menu dropdown-menu-right animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="mr-2 text-gray-400 fas fa-user fa-sm fa-fw"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="mr-2 text-gray-400 fas fa-cogs fa-sm fa-fw"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="mr-2 text-gray-400 fas fa-list fa-sm fa-fw"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal"
-                                    data-target="#logoutModal">
-                                    <i class="mr-2 text-gray-400 fas fa-sign-out-alt fa-sm fa-fw"></i>
-                                    Logout
-                                </a>
-                            </div>
                         </li>
 
                     </ul>
@@ -213,12 +189,103 @@
                 <div class="container-fluid">
 
 
+
                     <!-- Content Row -->
                     <div class="row">
-                        <div class="mb-4 col-12">
+                        <div class="container mt-4">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 col-md-10 col-sm-12">
+                                    <div class="mb-4 shadow card">
+                                        <div class="py-3 card-header">
+                                            <h6 class="m-0 text-xl font-extrabold text-green-500 font-weight-bold">
+                                                Formulaire d'importation et
+                                                sélection</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <!-- Champ 1 obligatoire à remplir avant d'afficher les autres -->
+                                                <div class="mb-3">
+                                                    <label for="userField1 " class="font-extrabold form-label">ANNEE
+                                                        HISTORIQUE</label>
+                                                    <input type="text" class="form-control" id="userField1"
+                                                        required placeholder="2023">
+                                                    <p class="font-bold text-red-500">NB: il s'agit de la dernière
+                                                        année des
+                                                        donnée historiques</p>
+                                                </div>
 
+                                                <!-- Champ 2 obligatoire à remplir avant d'afficher les autres -->
+                                                <div class="mb-3">
+                                                    <label for="userField2" class="font-extrabold form-label">ANNEE DE
+                                                        PROJECTION</label>
+                                                    <input type="text" class="form-control" id="userField2"
+                                                        required placeholder="2024">
+                                                </div>
 
+                                                <!-- Sections supplémentaires qui seront cachées initialement -->
+                                                <div id="additionalFields">
+
+                                                    <!-- Champ pour importer un fichier 1 -->
+                                                    <div class="mb-3">
+                                                        <label for="fileInput1" class="font-extrabold form-label">BASE
+                                                            DE
+                                                            DONNEE</label>
+                                                        <input type="file" class="form-control" id="fileInput1"
+                                                            accept=".csv, .xlsx, .xls">
+                                                    </div>
+
+                                                    <!-- Champ pour importer un fichier 2 -->
+                                                    <div class="mb-3">
+                                                        <label for="fileInput2"
+                                                            class="font-extrabold form-label">RECETTES NON
+                                                            FISCALES</label>
+                                                        <input type="file" class="form-control" id="fileInput2"
+                                                            accept=".csv, .xlsx, .xls">
+                                                    </div>
+
+                                                    <!-- Champ de sélection 1 -->
+                                                    <div class="mb-3">
+                                                        <label for="selectOption1"
+                                                            class="font-extrabold form-label">APPROCHE DE
+                                                            PROJECTION DES RECETTES NON FISCALES</label>
+                                                        <select class="form-select form-control" id="selectOption1"
+                                                            required>
+                                                            <option value="" disabled selected>--Sélectionner une
+                                                                approche--
+                                                            </option>
+                                                            <option value="lineaire">ECO. NON LINEAIRE</option>
+                                                            <option value="non_lineaire">ECO. LINEAIRE</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- Champ de sélection 2 -->
+                                                    <div class="mb-3">
+                                                        <label for="selectOption2"
+                                                            class="font-extrabold form-label">SCENARIO</label>
+                                                        <select class="form-select form-control" id="selectOption2"
+                                                            required>
+                                                            <option value="" disabled selected>--Sélectionner un
+                                                                scénario--
+                                                            </option>
+                                                            <option value="pessimiste">PESSIMISTE</option>
+                                                            <option value="reference">REFERENCE</option>
+                                                            <option value="optimiste">OPTIMISTE</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- Bouton Suivant -->
+                                                    <div class="mb-3">
+                                                        <button type="submit"
+                                                            class="font-bold btn btn-primary w-100">Suivant</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
 
 
@@ -240,6 +307,30 @@
 
         </div>
         <!-- End of Content Wrapper -->
+        <!-- Modal de confirmation de déconnexion -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logoutModalLabel">Prêt à quitter ?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Fermer">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Sélectionnez "Déconnexion" ci-dessous si vous êtes prêt à quitter votre session.
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Déconnexion</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
     <!-- End of Page Wrapper -->
@@ -248,26 +339,6 @@
     <a class="rounded scroll-to-top" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('dashboard/vendor/jquery/jquery.min.js') }}"></script>

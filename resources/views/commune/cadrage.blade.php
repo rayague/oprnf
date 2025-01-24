@@ -87,11 +87,10 @@
             </li>
             <!-- Nav Item - DECONNEXION -->
             <li class="nav-item hover:bg-red-500">
-                <form class="nav-link" action="{{ route('logout') }}" method="POST">
-                    @csrf
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt"></i>
-                    <input class="text-center font-weight-bold" type="submit" value="DÉCONNEXION" />
-                </form>
+                    <span class="font-weight-bold">DÉCONNEXION</span>
+                </a>
             </li>
 
 

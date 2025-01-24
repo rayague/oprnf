@@ -14,7 +14,7 @@
     <title>OPRNF</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}")}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -89,11 +89,10 @@
             </li>
             <!-- Nav Item - DECONNEXION -->
             <li class="nav-item hover:bg-red-500">
-                <form class="nav-link" action="{{ route('logout') }}" method="POST">
-                    @csrf
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt"></i>
-                    <input class="text-center font-weight-bold" type="submit" value="DÉCONNEXION" />
-                </form>
+                    <span class="font-weight-bold">DÉCONNEXION</span>
+                </a>
             </li>
 
 
@@ -236,6 +235,30 @@
 
         </div>
         <!-- End of Content Wrapper -->
+        <!-- Modal de confirmation de déconnexion -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logoutModalLabel">Prêt à quitter ?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Fermer">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Sélectionnez "Déconnexion" ci-dessous si vous êtes prêt à quitter votre session.
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Déconnexion</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
     <!-- End of Page Wrapper -->

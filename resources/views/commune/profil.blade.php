@@ -89,11 +89,10 @@
 
             <!-- Nav Item - DECONNEXION -->
             <li class="nav-item hover:bg-red-500">
-                <form class="nav-link" action="{{ route('logout') }}" method="POST">
-                    @csrf
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt"></i>
-                    <input class="text-center font-weight-bold" type="submit" value="DÉCONNEXION" />
-                </form>
+                    <span class="font-weight-bold">DÉCONNEXION</span>
+                </a>
             </li>
 
 
@@ -218,6 +217,86 @@
                     <!-- Content Row -->
                     <div class="row">
                         <div class="mb-4 col-12">
+                            <section aria-labelledby="profile_settings_heading">
+                                <div class="shadow sm:rounded-lg sm:overflow-hidden">
+                                    <div class="px-4 py-6 space-y-6 bg-white sm:p-6">
+                                        <!-- Section à droite : image de profil -->
+                                        <div class="space-y-6">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0">
+                                                    <!-- Exemple d'image de profil -->
+                                                    <img src="{{ asset('images/logo4.jpg') }}" alt="Avatar"
+                                                        class="w-24 border-2 border-gray-300 rounded-full ">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div>
+                                            <h2 id="profile_settings_heading"
+                                                class="text-lg font-bold leading-6 text-gray-900">
+                                                Profil
+                                            </h2>
+
+                                        </div>
+
+                                        <!-- Formulaire principal -->
+                                        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                                            <!-- Section à gauche : informations utilisateur -->
+                                            <div class="space-y-6">
+                                                <!-- Nom -->
+                                                <div>
+                                                    <label for="name"
+                                                        class="block text-sm font-medium text-gray-700">Nom de la
+                                                        commune</label>
+                                                    <div
+                                                        class="p-2 bg-gray-200 border-2 border-gray-300 rounded border-1">
+                                                        <h3 class="m-1 font-bold select-none">
+                                                            @auth
+                                                                {{ Auth::user()->name }}
+                                                                <!-- Affiche le nom de l'utilisateur connecté -->
+                                                                <!-- Affiche la commune de l'utilisateur connecté, si elle existe -->
+                                                                @if (Auth::user()->commune)
+                                                                    ({{ Auth::user()->commune }})
+                                                                @else
+                                                                    (Commune non définie)
+                                                                @endif
+                                                            @else
+                                                                Invité
+                                                            @endauth
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <h2 for="name"
+                                                        class="block text-sm font-medium text-gray-700">Mot de
+                                                        passe</h2>
+                                                    <div
+                                                        class="p-2 bg-gray-200 border-2 border-gray-300 rounded border-1">
+                                                        {{ $userPassword->id }}
+
+                                                        <h3 class="m-1 font-bold select-none">motdepasse</h3>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Bouton de soumission -->
+                                    <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
+                                        <button type="button"
+                                            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
+                                            data-toggle="modal" data-target="#changePasswordModal">
+                                            Changer mot de passe
+                                        </button>
+                                    </div>
+                                </div>
+                            </section>
+
 
 
                         </div>
@@ -242,34 +321,115 @@
 
         </div>
         <!-- End of Content Wrapper -->
+        <!-- Modal de confirmation de déconnexion -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logoutModalLabel">Prêt à quitter ?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Fermer">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Sélectionnez "Déconnexion" ci-dessous si vous êtes prêt à quitter votre session.
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Déconnexion</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
     <!-- End of Page Wrapper -->
+
+    <!-- Modal pour changer le mot de passe -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog"
+        aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="text-white modal-header bg-sky-600">
+                    <h5 class="modal-title" id="changePasswordModalLabel">Changer votre mot de passe</h5>
+                    <button type="button" class="text-white close" data-dismiss="modal" aria-label="Fermer">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('password.update') }}" method="POST">
+                        @csrf
+                        <!-- Ancien mot de passe -->
+                        <div class="mb-4">
+                            <label for="current_password" class="block text-sm font-medium text-gray-700">Ancien mot
+                                de passe</label>
+                            <div class="relative">
+                                <input type="password" id="current_password" name="current_password" required
+                                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    placeholder="Entrez votre ancien mot de passe">
+                                <button type="button"
+                                    class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+                                    onclick="toggleVisibility('current_password')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Nouveau mot de passe -->
+                        <div class="mb-4">
+                            <label for="new_password" class="block text-sm font-medium text-gray-700">Nouveau mot de
+                                passe</label>
+                            <div class="relative">
+                                <input type="password" id="new_password" name="new_password" required
+                                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    placeholder="Entrez votre nouveau mot de passe">
+                                <button type="button"
+                                    class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+                                    onclick="toggleVisibility('new_password')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Confirmer le nouveau mot de passe -->
+                        <div class="mb-4">
+                            <label for="new_password_confirmation"
+                                class="block text-sm font-medium text-gray-700">Confirmer le nouveau mot de
+                                passe</label>
+                            <div class="relative">
+                                <input type="password" id="new_password_confirmation"
+                                    name="new_password_confirmation" required
+                                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    placeholder="Confirmez votre nouveau mot de passe">
+                                <button type="button"
+                                    class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+                                    onclick="toggleVisibility('new_password_confirmation')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="text-white btn btn-primary bg-sky-600 hover:bg-sky-700">Enregistrer
+                        les modifications</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Scroll to Top Button-->
     <a class="rounded scroll-to-top" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('dashboard/vendor/jquery/jquery.min.js') }}"></script>
@@ -287,6 +447,22 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('dashboard/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('dashboard/js/demo/chart-pie-demo.js') }}"></script>
+    <script>
+        function toggleVisibility(id) {
+            var input = document.getElementById(id);
+            var icon = input.nextElementSibling.querySelector('i');
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+    </script>
 
 </body>
 
