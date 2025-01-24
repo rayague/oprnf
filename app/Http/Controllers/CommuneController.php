@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\User;
 use App\Models\Recette;
 use App\Models\Prevision;
@@ -63,36 +64,23 @@ class CommuneController extends Controller
     //  Afficher les informations de la commune par son ID
      public function show($id)
      {
-         // Liste des communes (tu peux les récupérer depuis une base de données)
-         $communes = [
-             'Abomey', 'Adjarra', 'Agbangnizoun', 'Aplahoué', 'Avrankou', 'Bembèrèkè', 'Bohicon', 'Bantè', 'Banikoara', 'Bèdèkpo',
-             'Dassa-Zoumé', 'Djougou', 'Djidja', 'Kandi', 'Kérou', 'Kouandé', 'Kétou', 'Lokossa', 'Malanville', 'Materi', 'Nikki',
-             'Ouidah', 'Parakou', 'Pobè', 'Sèmè-Kpodji', 'Sakété', 'Save', 'Tchaourou', 'Toviklin', 'Zagnanado', 'Zè', 'Akpro-Missérété',
-             'Allada', 'Anii', 'Atacora', 'Avrankou', 'Bassila', 'Bembérèkè', 'Comè', 'Cotonou', 'Glazoué', 'Houéyogbé', 'Ifangni',
-             'Kétou', 'Ouidah', 'Parakou', 'Pobè', 'Sèmè-Kpodji', 'Sakété', 'Save', 'Tchaourou', 'Zagnanado', 'Zè',
-             'Bonou', 'Dassa-Zoumé', 'Dangbo', 'Pobè', 'Tori-Bossito', 'Ouèssè', 'Ouèssè', 'Abomey', 'Abomey-Calavi', 'Adjohoun',
-             'Akassato', 'Bassila', 'Djougou', 'Matéri', 'Kouandé', 'Natitingou', 'N\'Dali', 'Parakou', 'Savalou', 'Tchaourou', 'Zogbodomè',
-             'Zogbodomey', 'Zogbodiomé'
-         ];
 
-         // Vérifier si l'ID est valide
-         if ($id >= 1 && $id <= count($communes)) {
-             $commune = $communes[$id - 1]; // l'index commence à 0, donc on utilise $id - 1
-             return view('admin.show', compact('commune')); // Afficher la vue avec le nom de la commune
-         }
-
-         // Si l'ID est invalide, afficher une page 404
-         abort(404, "Commune non trouvée");
      }
 
      public function profil()
      {
-         $user = Auth::user();
-         // Récupérer tous les utilisateurs sauf 'administrateurs' et 'communes'
-    $users = UserPassword::where("password")
-    ->with('User') // Charger les mots de passe associés
-    ->get();
-             return view('commune.profil', compact('users', 'user')); // Passer également l'utilisateur à la vue
+         // Récupérer l'utilisateur actuellement connecté
+         $user = Auth::user(); // Cela récupère l'utilisateur authentifié
+
+         // Vérifier si l'utilisateur est authentifié
+             // Récupérer l'ID de l'utilisateur connecté
+             $userId = $user->id;
+
+             // Chercher le mot de passe associé à cet utilisateur dans la table `user_passwords`
+             $userPassword = UserPassword::where('user_id', $userId)->first();
+
+             // Passer l'utilisateur et le mot de passe récupéré à la vue
+             return view('commune.profil', compact('userPassword', 'user')); // La vue 'commune.profil' va recevoir ces données
 
      }
      public function retourFiscal()
@@ -110,7 +98,13 @@ class CommuneController extends Controller
              'new_password' => 'required|string|min:8|confirmed', // Minimum 8 caractères et confirmation
          ]);
 
-         $user = Auth::user(); // Récupérer l'utilisateur connecté
+         // Récupérer l'utilisateur connecté
+         $user = Auth::user();  // Cela récupère l'utilisateur authentifié
+
+         // Vérifier si l'utilisateur est authentifié
+         if (!$user) {
+             return redirect()->route('login')->withErrors(['error' => 'Utilisateur non authentifié']);
+         }
 
          // Vérifier si l'ancien mot de passe est correct
          if (!Hash::check($request->current_password, $user->password)) {
@@ -120,26 +114,33 @@ class CommuneController extends Controller
          // Hacher le nouveau mot de passe
          $newPassword = Hash::make($request->new_password);
 
-         // Mettre à jour le mot de passe dans la table users
+         // 1. Mettre à jour le mot de passe dans la table 'users'
          $user->password = $newPassword;
-         $user->save();
+         $user->save();  // Sauvegarder les changements dans 'users'
 
-         // Mettre à jour le mot de passe dans la table user_passwords (assurez-vous que la relation existe)
+         // 2. Mettre à jour le mot de passe dans la table 'user_passwords'
+         // Vérifier si une entrée existe pour cet utilisateur dans 'user_passwords'
          $userPassword = UserPassword::where('user_id', $user->id)->first();
+
          if ($userPassword) {
-             $userPassword->password = $request->new_password; // Stocker le mot de passe en clair si nécessaire
-             $userPassword->save();
+             // Si l'entrée existe, mettre à jour le mot de passe dans 'user_passwords'
+             $userPassword->password = $request->new_password; // Mot de passe en clair (attention au stockage en clair)
+             $userPassword->save();  // Sauvegarder les changements dans 'user_passwords'
          } else {
-             // Si l'entrée n'existe pas dans user_passwords, en créer une nouvelle
+             // Si l'entrée n'existe pas, créer une nouvelle entrée dans 'user_passwords'
              UserPassword::create([
                  'user_id' => $user->id,
-                 'password' => $request->new_password, // Ici, tu stockes le mot de passe en clair
+                 'password' => $request->new_password, // Stocker le mot de passe en clair
              ]);
          }
 
          // Rediriger avec un message de succès
          return redirect()->back()->with('success', 'Mot de passe mis à jour avec succès.');
      }
+
+
+
+
 
 
 

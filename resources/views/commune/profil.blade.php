@@ -240,6 +240,21 @@
                                         </div>
 
                                         <!-- Formulaire principal -->
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+
+                                        @if (session('success'))
+                                            <div class="alert alert-success">
+                                                {{ session('success') }}
+                                            </div>
+                                        @endif
                                         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                                             <!-- Section à gauche : informations utilisateur -->
                                             <div class="space-y-6">
@@ -432,7 +447,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('password.update') }}" method="POST">
+                    <form action="{{ route('updatePassword') }}" method="POST">
                         @csrf
                         @method('PUT') <!-- Ajout de la méthode PUT ici -->
 

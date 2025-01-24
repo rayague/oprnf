@@ -6,7 +6,10 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class UserPassword extends Model
-{    protected $fillable = [
+
+{
+    public $timestamps = true;
+    protected $fillable = [
     'user_id', // Référence à l'utilisateur
     'password', // Mot de passe en clair
 ];
