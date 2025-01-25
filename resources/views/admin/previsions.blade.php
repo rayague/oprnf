@@ -65,7 +65,7 @@
             </li>
 
 
-            <!-- Nav Item - Cadre -->
+            {{-- <!-- Nav Item - Cadre -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.cadrage') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
@@ -87,7 +87,7 @@
                     <i class="fas fa-fw fa-cogs"></i>
                     <span class="font-weight-bold">SOLVER</span>
                 </a>
-            </li>
+            </li> --}}
 
             <!-- Nav Item - Recettes -->
             <li class="nav-item">
@@ -113,11 +113,10 @@
 
             <!-- Nav Item - DECONNEXION -->
             <li class="nav-item hover:bg-red-500">
-                <form class="nav-link" action="{{ route('logout') }}" method="POST">
-                    @csrf
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt"></i>
-                    <input class="text-center font-weight-bold" type="submit" value="DÉCONNEXION" />
-                </form>
+                    <span class="font-weight-bold">DÉCONNEXION</span>
+                </a>
             </li>
 
 
@@ -147,19 +146,6 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    {{-- <form
-                        class="my-2 mr-auto d-none d-sm-inline-block form-inline ml-md-3 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="border-0 form-control bg-light small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> --}}
 
                     <p class="text-xs font-black text-green-700 lg:9xl"><span class="text-red-500">O</span>UTILS DE
                         <span class="text-red-500">P</span>REVISION DES
@@ -413,6 +399,31 @@
 
         </div>
         <!-- End of Content Wrapper -->
+
+        <!-- Modal de confirmation de déconnexion -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logoutModalLabel">Prêt à quitter ?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Fermer">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Sélectionnez "Déconnexion" ci-dessous si vous êtes prêt à quitter votre session.
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Déconnexion</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
     <!-- End of Page Wrapper -->
