@@ -228,28 +228,59 @@
                                 </div>
                             @endif
 
-
                             <div class="mb-4 shadow card">
                                 <div class="py-3 card-header">
                                     <h6 class="m-0 text-xl font-extrabold text-green-500 font-weight-bold">Liste des
                                         recettes non fiscales</h6>
                                 </div>
                                 <div class="card-body">
-                                    <p class="mb-4">Voici une liste des différentes recettes non fiscales disponibles
-                                        dans le système. Vous pouvez cliquer sur chaque bouton pour sélectionner une
-                                        recette.</p>
 
                                     <!-- Générer les boutons dynamiquement à partir des données de la base -->
-                                    @foreach ($recettes as $recette)
+                                    {{-- @foreach ($recettes as $recette)
                                         <button type="button"
-                                            class="p-2 mb-3 font-bold text-left text-gray-800 border rounded-md bg-slate-200 w-100">
+                                            class="p-2 mb-3 font-bold text-gray-800 border rounded-md bg-slate-200 w-100">
                                             {{ $recette->nom }}
                                         </button>
-                                    @endforeach
-                                    <a href="{{ route('selectionsView') }}"
-                                        class="w-full mt-8 font-bold btn btn-primary">Selectionner</a>
-                                </div>
+                                    @endforeach --}}
+                                    {{-- <form action="{{ route('validerRecette') }}" method="POST">
+                                        @csrf
+                                        @foreach ($recettesSelectionnees as $recette)
+                                            <div class="flex flex-row mb-2">
+                                                <input type="checkbox" id="recette_{{ $recette->id }}"
+                                                    name="recettes[]" value="{{ $recette->id }}" class="mr-2">
+                                                <label for="recette_{{ $recette->id }}"
+                                                    class="w-full p-2 font-bold text-gray-800 border rounded-md bg-slate-200">
+                                                    {{ $recette->nom }}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                        <button type="submit"
+                                            class="px-4 py-2 font-bold text-white bg-blue-500 rounded-md w-100">Valider</button>
+                                    </form> --}}
 
+                                    <form action="{{ route('validerRecette') }}" method="POST">
+                                        @csrf
+                                        <p class="mb-4">Voici les recettes non fiscales sélectionnées dans le
+                                            système. Vous pouvez ajuster vos choix ici.</p>
+
+                                        <!-- Afficher les recettes provenant de RecettesSelectionnee -->
+                                        @foreach ($recettesSelectionnees as $recette)
+                                            <div class="flex flex-row mb-2">
+                                                <input type="checkbox" id="recette_{{ $recette->id }}"
+                                                    name="recettes[]" value="{{ $recette->id }}" class="mr-2">
+                                                <label for="recette_{{ $recette->id }}"
+                                                    class="w-full p-2 font-bold text-gray-800 border rounded-md bg-slate-200">
+                                                    {{ $recette->nom }}
+                                                </label>
+                                            </div>
+                                        @endforeach
+
+                                        <button type="submit"
+                                            class="px-4 py-2 font-bold text-white bg-blue-500 rounded-md w-100">Valider</button>
+                                    </form>
+
+
+                                </div>
                             </div>
 
                         </div>

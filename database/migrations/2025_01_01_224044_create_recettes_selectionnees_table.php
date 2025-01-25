@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('recettes_selectionnees', function (Blueprint $table) {
             $table->id();
-            $table->string('nom'); // Nom de la recette sélectionnée
+            // $table->string('nom'); // Nom de la recette sélectionnée
+            $table->string('nom')->nullable()->change();
             $table->timestamps();
         });
     }

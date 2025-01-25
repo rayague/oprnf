@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Recette;
 use Illuminate\Http\Request;
 use App\Models\RecettesSelectionnee;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -36,6 +37,15 @@ class AdminController extends Controller
         $recettesSelectionnees = RecettesSelectionnee::all();
         return view('admin.recettes', compact('recettes', 'recettesSelectionnees')); // La vue 'commune.dashboard' doit exister
     }
+    public function selectionsView()
+    {
+        $recettes = Recette::all(); // Si tu veux récupérer toutes les recettes
+        $recettesSelectionnees = RecettesSelectionnee::all(); // Si tu as une table qui contient les recettes sélectionnées
+
+        // Assure-toi de passer les deux variables à la vue
+        return view('admin.recettesSelectionnee', compact('recettes', 'recettesSelectionnees'));
+    }
+
 
     public function previsions()
     {
@@ -63,4 +73,66 @@ class AdminController extends Controller
 
     return view('admin.listeUtilisateurs', compact('users'));
 }
+
+// public function validerRecette(Request $request)
+// {
+//     // Récupérer les IDs des recettes sélectionnées depuis la requête
+//     $selectedRecettes = $request->input('recettes'); // Un tableau des IDs sélectionnés
+
+//     if ($selectedRecettes) {
+//         // Étape 1 : Supprimer toutes les anciennes recettes sélectionnées (si nécessaire)
+//         // UserRecette::where('user_id', Auth::id())->delete();
+
+//         // Étape 2 : Ajouter les nouvelles recettes sélectionnées (si besoin)
+//         foreach ($selectedRecettes as $recetteId) {
+//             // Vérifier que tu insères la valeur de 'nom' aussi
+//             $recette = Recette::find($recetteId);
+
+//             if ($recette) {
+//                 // Insérer la recette dans la table intermédiaire avec la valeur de 'nom'
+//                 RecettesSelectionnee::create([
+//                     'recette_id' => $recette->id,
+//                     'nom' => $recette->nom, // Ajouter 'nom' ici
+//                 ]);
+//             }
+//         }
+
+//         // Étape 3 : Récupérer les recettes correspondantes dans la base de données
+//         $recettes = Recette::whereIn('id', $selectedRecettes)->get();
+
+//         // Retourner les recettes sélectionnées à la vue ou rediriger
+//         return view('admin.recettes', compact('recettes'))->with('success', 'Recettes validées avec succès!');
+//     } else {
+//         return back()->with('error', 'Aucune recette sélectionnée.');
+//     }
+// }
+
+
+
+public function validerRecette(Request $request)
+{
+    // Récupérer les IDs des recettes sélectionnées
+    $selectedRecettes = $request->input('recettes'); // Tableau des IDs sélectionnés
+
+    if ($selectedRecettes) {
+        // Étape 1 : Supprimer toutes les anciennes recettes dans la table Recette (si nécessaire)
+        Recette::truncate(); // ou une autre logique pour supprimer les anciennes recettes (selon ta logique)
+
+        // Étape 2 : Ajouter les nouvelles recettes sélectionnées dans la table Recette
+        foreach ($selectedRecettes as $recetteId) {
+            // Si tu veux ajouter les recettes dans Recette
+            Recette::create(['nom' => RecettesSelectionnee::find($recetteId)->nom]); // Par exemple, on prend le nom de RecettesSelectionnee
+        }
+
+        // Étape 3 : Récupérer les recettes correspondantes dans la base de données Recette
+        $recettes = Recette::whereIn('id', $selectedRecettes)->get();
+
+        // Retourner les recettes sélectionnées à la vue ou rediriger avec succès
+        return view('admin.recettes', compact('recettes'))->with('success', 'Recettes validées avec succès!');
+    } else {
+        return back()->with('error', 'Aucune recette sélectionnée.');
+    }
+}
+
+
 }

@@ -22,6 +22,21 @@ class RecetteSeeder extends Seeder
             ['nom' => 'Contributions volontaires'],
             ['nom' => 'Recettes des activités économiques'],
             ['nom' => 'Amortissement et récupérations'],
+        ['nom' => 'Revenus de l\'entreprise et du domaine'],
+        ['nom' => 'Produits des unités de production de marchandises'],
+        ['nom' => 'Revenus des entreprises'],
+        ['nom' => 'Droits et taxes à l\'importation'],
+        ['nom' => 'Droits et taxes à l\'exportation'],
+        ['nom' => 'Redevances informatiques'],
+        ['nom' => 'Autres recettes non fiscales'],
+        ['nom' => 'Droits de douane'],
+        ['nom' => 'Revenus des concessions'],
+        ['nom' => 'Revenus des services publics'],
+        ['nom' => 'Revenus des participations financières'],
+        ['nom' => 'Revenus des ventes de services'],
+        ['nom' => 'Revenus des licences et autorisations'],
+        ['nom' => 'Revenus des droits de passage'],
+        ['nom' => 'Revenus des services administratifs'],
         ]);
     }
 }
