@@ -240,54 +240,100 @@
 
                     <!-- Content Row -->
                     <div class="row">
-
-                        <!-- Communes au Bénin -->
-                        <div class="mb-4 col-xl-3 col-md-6">
-                            <div class="py-2 shadow card border-left-primary h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="mr-2 col">
-                                            <div class="mb-1 text-xs font-weight-bold text-primary text-uppercase">
-                                                Communes</div>
-                                            <div class="mb-0 text-gray-800 h5 font-weight-bold">77</div>
+                        <div class="container mt-4">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 col-md-10 col-sm-12">
+                                    <div class="mb-4 shadow card">
+                                        <div class="py-3 card-header">
+                                            <h6 class="m-0 text-xl font-extrabold text-green-500 font-weight-bold">
+                                                Formulaire d'importation et
+                                                sélection</h6>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="text-gray-300 fas fa-fw fa-city fa-2x"></i>
+                                        <div class="card-body">
+                                            <form>
+                                                <!-- Champ 1 obligatoire à remplir avant d'afficher les autres -->
+                                                <div class="mb-3">
+                                                    <label for="userField1 " class="font-extrabold form-label">ANNEE
+                                                        HISTORIQUE</label>
+                                                    <input type="text" class="form-control" id="userField1"
+                                                        required placeholder="2023">
+                                                    <p class="font-bold text-red-500">NB: il s'agit de la dernière
+                                                        année des
+                                                        donnée historiques</p>
+                                                </div>
+
+                                                <!-- Champ 2 obligatoire à remplir avant d'afficher les autres -->
+                                                <div class="mb-3">
+                                                    <label for="userField2" class="font-extrabold form-label">ANNEE DE
+                                                        PROJECTION</label>
+                                                    <input type="text" class="form-control" id="userField2"
+                                                        required placeholder="2024">
+                                                </div>
+
+                                                <!-- Sections supplémentaires qui seront cachées initialement -->
+                                                <div id="additionalFields">
+
+                                                    <!-- Champ pour importer un fichier 1 -->
+                                                    <div class="mb-3">
+                                                        <label for="fileInput1" class="font-extrabold form-label">BASE
+                                                            DE
+                                                            DONNEE</label>
+                                                        <input type="file" class="form-control" id="fileInput1"
+                                                            accept=".csv, .xlsx, .xls">
+                                                    </div>
+
+                                                    <!-- Champ pour importer un fichier 2 -->
+                                                    <div class="mb-3">
+                                                        <label for="fileInput2"
+                                                            class="font-extrabold form-label">RECETTES NON
+                                                            FISCALES</label>
+                                                        <input type="file" class="form-control" id="fileInput2"
+                                                            accept=".csv, .xlsx, .xls">
+                                                    </div>
+
+                                                    <!-- Champ de sélection 1 -->
+                                                    <div class="mb-3">
+                                                        <label for="selectOption1"
+                                                            class="font-extrabold form-label">APPROCHE DE
+                                                            PROJECTION DES RECETTES NON FISCALES</label>
+                                                        <select class="form-select form-control" id="selectOption1"
+                                                            required>
+                                                            <option value="" disabled selected>--Sélectionner une
+                                                                approche--
+                                                            </option>
+                                                            <option value="lineaire">ECO. NON LINEAIRE</option>
+                                                            <option value="non_lineaire">ECO. LINEAIRE</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- Champ de sélection 2 -->
+                                                    <div class="mb-3">
+                                                        <label for="selectOption2"
+                                                            class="font-extrabold form-label">SCENARIO</label>
+                                                        <select class="form-select form-control" id="selectOption2"
+                                                            required>
+                                                            <option value="" disabled selected>--Sélectionner un
+                                                                scénario--
+                                                            </option>
+                                                            <option value="pessimiste">PESSIMISTE</option>
+                                                            <option value="reference">REFERENCE</option>
+                                                            <option value="optimiste">OPTIMISTE</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- Bouton Suivant -->
+                                                    <div class="mb-3">
+                                                        <button type="submit"
+                                                            class="font-bold btn btn-primary w-100">Suivant</button>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Départements au Bénin -->
-                        <div class="mb-4 col-xl-3 col-md-6">
-                            <div class="py-2 shadow card border-left-success h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="mr-2 col">
-                                            <div class="mb-1 text-xs font-weight-bold text-success text-uppercase">
-                                                Départements</div>
-                                            <div class="mb-0 text-gray-800 h5 font-weight-bold">12</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="text-gray-300 fas fa-fw fa-map-signs fa-2x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-
-
-                    <!-- Content Row -->
-                    <div class="row">
-                        <div class="mb-4 col-12">
-
-
-                        </div>
                     </div>
 
 

@@ -212,49 +212,6 @@
                 <div class="container-fluid">
 
                     <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Communes au Bénin -->
-                        <div class="mb-4 col-xl-3 col-md-6">
-                            <div class="py-2 shadow card border-left-primary h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="mr-2 col">
-                                            <div class="mb-1 text-xs font-weight-bold text-primary text-uppercase">
-                                                Communes</div>
-                                            <div class="mb-0 text-gray-800 h5 font-weight-bold">77</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="text-gray-300 fas fa-fw fa-city fa-2x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Départements au Bénin -->
-                        <div class="mb-4 col-xl-3 col-md-6">
-                            <div class="py-2 shadow card border-left-success h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="mr-2 col">
-                                            <div class="mb-1 text-xs font-weight-bold text-success text-uppercase">
-                                                Départements</div>
-                                            <div class="mb-0 text-gray-800 h5 font-weight-bold">12</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="text-gray-300 fas fa-fw fa-map-signs fa-2x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-
-                    <!-- Content Row -->
                     <div class="flex flex-col p-0 rounded-md row lg:flex-row md:flex-row md:p-2 lg:p-4">
                         <div class="mb-4 col-lg-5">
                             <!-- Liste des recettes non fiscales -->
