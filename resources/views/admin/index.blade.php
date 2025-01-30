@@ -98,7 +98,7 @@
             </li>
             <!-- Nav Item - PREVISIONS -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.utilisateurs') }}">
+                <a class="nav-link" href="{{ route('admin.previsions') }}">
                     <i class="fas fa-bullseye"></i>
                     <span class="text-center font-weight-bold">PRÉVISIONS</span>
                 </a>

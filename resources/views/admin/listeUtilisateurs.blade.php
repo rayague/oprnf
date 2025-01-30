@@ -57,7 +57,7 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Accueil -->
-            <li class="bg-green-500 nav-item">
+            <li class=" nav-item">
                 <a class="nav-link" href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-fw fa-home"></i>
                     <span class="font-weight-bold">ACCUEIL</span>
@@ -98,14 +98,14 @@
             </li>
             <!-- Nav Item - PREVISIONS -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.utilisateurs') }}">
+                <a class="nav-link" href="{{ route('admin.previsions') }}">
                     <i class="fas fa-bullseye"></i>
                     <span class="text-center font-weight-bold">PRÉVISIONS</span>
                 </a>
             </li>
 
             <!-- Nav Item - PREVISIONS -->
-            <li class="nav-item">
+            <li class="bg-green-500 nav-item">
                 <a class="nav-link" href="{{ route('admin.utilisateurs') }}">
                     <i class="fas fa-user"></i>
                     <span class="text-center font-weight-bold">UTILISATEURS</span>

@@ -135,4 +135,39 @@ public function validerRecette(Request $request)
 }
 
 
+public function show($communeId)
+{
+    // Liste des communes
+    $communes = [
+        'Abomey', 'Adjarra', 'Agbangnizoun', 'Aplahoué', 'Avrankou', 'Bembèrèkè',
+        'Bohicon', 'Bantè', 'Banikoara', 'Bèdèkpo', 'Dassa-Zoumé', 'Djougou',
+        'Djidja', 'Kandi', 'Kérou', 'Kouandé', 'Kétou', 'Lokossa', 'Malanville',
+        'Materi', 'Nikki', 'Ouidah', 'Parakou', 'Pobè', 'Sèmè-Kpodji', 'Sakété',
+        'Save', 'Tchaourou', 'Toviklin', 'Zagnanado', 'Zè', 'Akpro-Missérété', 'Allada',
+        'Anii', 'Atacora', 'Avrankou', 'Bassila', 'Bembérèkè', 'Comè', 'Cotonou',
+        'Glazoué', 'Houéyogbé', 'Ifangni', 'Kétou', 'Ouidah', 'Parakou', 'Pobè',
+        'Sèmè-Kpodji', 'Sakété', 'Save', 'Tchaourou', 'Zagnanado', 'Zè', 'Bonou',
+        'Dassa-Zoumé', 'Dangbo', 'Pobè', 'Tori-Bossito', 'Ouèssè', 'Ouèssè', 'Abomey',
+        'Abomey-Calavi', 'Adjohoun', 'Akassato', 'Bassila', 'Djougou', 'Matéri',
+        'Kouandé', 'Natitingou', 'N\'Dali', 'Parakou', 'Savalou', 'Tchaourou', 'Zogbodomè',
+        'Zogbodomey', 'Zogbodiomé',
+    ];
+
+    // Vérifie si l'ID de la commune est valide
+    if (!isset($communes[$communeId - 1])) {
+        abort(404);  // Si la commune n'existe pas, retourne une erreur 404
+    }
+
+    // Récupère le nom de la commune
+    $commune = $communes[$communeId - 1];
+
+    // Trouve l'ID de la commune suivante
+    $nextCommuneId = $communeId < count($communes) ? $communeId + 1 : null;
+
+    // Retourne la vue avec les variables nécessaires
+    return view('admin.affichageCommunes', compact('commune', 'communeId', 'nextCommuneId', 'communes'));
+}
+
+
+
 }

@@ -14,7 +14,7 @@
     <title>OPRNF</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}")}}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -35,12 +35,11 @@
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="flex flex-row font-bold sidebar-brand align-items-center justify-content-center"
-                href="index.html">
+            <a class="font-bold sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('images/logo2.png') }}" class="img-thumbnail w-50" alt="">
                 </div>
-                <div class="text-center sidebar-brand-text">OPRNF</div>
+                <div class="mx-3 sidebar-brand-text">OPRNF</div>
             </a>
 
             <!-- Divider -->
@@ -57,7 +56,7 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Accueil -->
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link" href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-fw fa-home"></i>
                     <span class="font-weight-bold">ACCUEIL</span>
@@ -66,7 +65,7 @@
 
 
             {{-- <!-- Nav Item - Cadre -->
-            <li class="nav-item">
+            <li class="bg-green-500 nav-item">
                 <a class="nav-link" href="{{ route('admin.cadrage') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span class="font-weight-bold">CADRAGE</span>
@@ -201,28 +200,7 @@
                                 </span>
                                 <img class="img-profile rounded-circle" src="{{ asset('images/logo1.ico') }}">
                             </h3>
-                            <!-- Dropdown - User Information -->
-                            <div class="shadow dropdown-menu dropdown-menu-right animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="mr-2 text-gray-400 fas fa-user fa-sm fa-fw"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="mr-2 text-gray-400 fas fa-cogs fa-sm fa-fw"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="mr-2 text-gray-400 fas fa-list fa-sm fa-fw"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal"
-                                    data-target="#logoutModal">
-                                    <i class="mr-2 text-gray-400 fas fa-sign-out-alt fa-sm fa-fw"></i>
-                                    Logout
-                                </a>
-                            </div>
+
                         </li>
 
                     </ul>
@@ -234,107 +212,25 @@
                 <div class="container-fluid">
 
 
-                    <div class="container mt-10">
-                        <h3 class="mb-8 text-3xl font-semibold text-center">Choisissez une commune</h3>
+                    <!-- Content Row -->
+                    <div class="row">
+                        <div class="mb-4 col-lg-6">
+                            <div class="container mt-5">
+                                <h3 class="mb-4 text-2xl font-semibold text-center">Détails de la commune :
+                                    {{ $commune }}</h3>
 
-                        <div class="grid grid-cols-1 gap-6 md:grid-cols-1 lg:grid-cols-1">
-                            @php
-                                $departements = [
-                                    'Atlantique' => [
-                                        'Abomey-Calavi',
-                                        'Allada',
-                                        'Avrankou',
-                                        'Ouidah',
-                                        'Sakété',
-                                        'Zogbodomè',
-                                        'Zogbodomey',
-                                    ],
-                                    'Borgou' => [
-                                        'Parakou',
-                                        'Nikki',
-                                        'Pobè',
-                                        'Sèmè-Kpodji',
-                                        'Tchaourou',
-                                        'Toviklin',
-                                        'Zagnanado',
-                                    ],
-                                    'Collines' => ['Dassa-Zoumé', 'Bantè', 'Savalou', 'Zè', 'Tchaourou'],
-                                    'Couffo' => ['Djidja', 'Comè', 'Aplahoué', 'Djougou', 'Bembèrèkè', 'Kétou'],
-                                    'Kouffo' => ['Lokossa', 'Malanville', 'Ifangni', 'Kétou', 'Zagnanado'],
-                                    'Littoral' => [
-                                        'Cotonou',
-                                        'Akassato',
-                                        'Abomey',
-                                        'Bohicon',
-                                        'Banikoara',
-                                        'Bèdèkpo',
-                                        'Dassa-Zoumé',
-                                    ],
-                                    'Mono' => ['Save', 'Bonou', 'Tori-Bossito', 'Dangbo', 'Zè'],
-                                    'Ouémé' => ['Sakété', 'Kouandé', 'N\'Dali', 'Zagnanado', 'Pobè'],
-                                    'Plateau' => ['Adjarra', 'Agbangnizoun', 'Kandi', 'Aplahoué', 'Sèmè-Kpodji'],
-                                    'Alibori' => ['Malanville', 'Kandi', 'Natitingou', 'Atacora', 'Ouèssè'],
-                                    'Atacora' => ['Akassato', 'Bassila', 'Banikoara', 'Savalou'],
-                                    'Zou' => ['Toviklin', 'Tori-Bossito', 'Zogbodomey', 'Dassa-Zoumé'],
-                                ];
-                            @endphp
+                                <!-- Ici, tu peux afficher les détails de la commune ou des actions supplémentaires -->
+                                <p class="text-lg text-gray-700">
+                                    Bienvenue à {{ $commune }} ! Cette page pourrait afficher plus d'informations
+                                    comme des statistiques,
+                                    des habitants, ou d'autres fonctionnalités liées à la commune.
+                                </p>
 
-                            <!-- Loop through Departments -->
-                            @foreach ($departements as $departement => $communes)
-                                <div class="p-6 space-y-4 bg-white rounded-lg shadow-lg">
-                                    <div class="flex items-center justify-between">
-                                        <h4 class="text-3xl font-semibold text-gray-700">{{ $departement }}</h4>
-                                        @php
-                                            $allTasksCompleted = true; // Logic to check if all tasks in the department are done
-                                        @endphp
-                                        <div class="flex items-center space-x-2">
-                                            @if ($allTasksCompleted)
-                                                <i class="text-xl text-green-500 fas fa-check-circle"></i>
-                                                <span class="text-green-500">Complet</span>
-                                            @else
-                                                <i class="text-xl text-red-500 fas fa-times-circle"></i>
-                                                <span class="text-red-500">Incomplet</span>
-                                            @endif
-                                        </div>
-                                    </div>
+                                <!-- Ajouter des boutons ou des liens supplémentaires si nécessaire -->
+                            </div>
 
-                                    <!-- Loop through Communes in the Department -->
-                                    <div class="grid grid-cols-1 gap-4">
-                                        @foreach ($communes as $index => $commune)
-                                            <div
-                                                class="flex items-center justify-between p-4 rounded-lg shadow-sm bg-gray-50 hover:shadow-md">
-                                                <a href="/admin/commune/n/{{ $index + 1 }}"
-                                                    class="flex items-center text-lg text-blue-600 hover:text-blue-800">
-                                                    <i class="mr-3 text-blue-600 fas fa-city"></i>
-                                                    {{ $commune }}
-                                                </a>
-
-                                                <!-- Task Status for Commune -->
-                                                @php
-                                                    $taskCompleted = false; // Logic to check if tasks for this commune are done
-                                                @endphp
-                                                @if ($taskCompleted)
-                                                    <i class="text-green-500 fas fa-check-circle"></i>
-                                                @else
-                                                    <i class="text-red-500 fas fa-times-circle"></i>
-                                                @endif
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @endforeach
                         </div>
                     </div>
-
-
-                    <!-- Pagination or more buttons -->
-                    <div class="mt-4 row">
-                        <div class="text-center col-12">
-                            <a href="#next-page" class="btn btn-secondary">Voir plus de communes</a>
-                        </div>
-                    </div>
-
-
 
                 </div>
                 <!-- /.container-fluid -->
@@ -355,31 +251,6 @@
         </div>
         <!-- End of Content Wrapper -->
 
-        <!-- Modal de confirmation de déconnexion -->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="logoutModalLabel">Prêt à quitter ?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Fermer">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Sélectionnez "Déconnexion" ci-dessous si vous êtes prêt à quitter votre session.
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-danger">Déconnexion</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
     <!-- End of Page Wrapper -->
 
@@ -388,21 +259,26 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <!-- Modal de confirmation de déconnexion -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="logoutModalLabel">Prêt à quitter ?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Fermer">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">
+                    Sélectionnez "Déconnexion" ci-dessous si vous êtes prêt à quitter votre session.
+                </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Déconnexion</button>
+                    </form>
                 </div>
             </div>
         </div>
