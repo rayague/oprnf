@@ -135,39 +135,110 @@ public function validerRecette(Request $request)
 }
 
 
-public function show($communeId)
+// public function show($communeId)
+// {
+//     // Liste des communes
+//     $communes = [
+//         'Abomey', 'Adjarra', 'Agbangnizoun', 'Aplahoué', 'Avrankou', 'Bembèrèkè',
+//         'Bohicon', 'Bantè', 'Banikoara', 'Bèdèkpo', 'Dassa-Zoumé', 'Djougou',
+//         'Djidja', 'Kandi', 'Kérou', 'Kouandé', 'Kétou', 'Lokossa', 'Malanville',
+//         'Materi', 'Nikki', 'Ouidah', 'Parakou', 'Pobè', 'Sèmè-Kpodji', 'Sakété',
+//         'Save', 'Tchaourou', 'Toviklin', 'Zagnanado', 'Zè', 'Akpro-Missérété', 'Allada',
+//         'Anii', 'Atacora', 'Avrankou', 'Bassila', 'Bembérèkè', 'Comè', 'Cotonou',
+//         'Glazoué', 'Houéyogbé', 'Ifangni', 'Kétou', 'Ouidah', 'Parakou', 'Pobè',
+//         'Sèmè-Kpodji', 'Sakété', 'Save', 'Tchaourou', 'Zagnanado', 'Zè', 'Bonou',
+//         'Dassa-Zoumé', 'Dangbo', 'Pobè', 'Tori-Bossito', 'Ouèssè', 'Ouèssè', 'Abomey',
+//         'Abomey-Calavi', 'Adjohoun', 'Akassato', 'Bassila', 'Djougou', 'Matéri',
+//         'Kouandé', 'Natitingou', 'N\'Dali', 'Parakou', 'Savalou', 'Tchaourou', 'Zogbodomè',
+//         'Zogbodomey', 'Zogbodiomé',
+//     ];
+
+//     // Vérifie si l'ID de la commune est valide
+//     if (!isset($communes[$communeId - 1])) {
+//         abort(404);  // Si la commune n'existe pas, retourne une erreur 404
+//     }
+
+//     // Récupère le nom de la commune
+//     $commune = $communes[$communeId - 1];
+
+//     // Trouve l'ID de la commune suivante
+//     $nextCommuneId = $communeId < count($communes) ? $communeId + 1 : null;
+
+//     // Retourne la vue avec les variables nécessaires
+//     return view('admin.affichageCommunes', compact('commune', 'communeId', 'nextCommuneId', 'communes'));
+// }
+
+public function show($commune)
 {
-    // Liste des communes
+    // Liste des communes (associatif pour éviter les doublons)
     $communes = [
-        'Abomey', 'Adjarra', 'Agbangnizoun', 'Aplahoué', 'Avrankou', 'Bembèrèkè',
-        'Bohicon', 'Bantè', 'Banikoara', 'Bèdèkpo', 'Dassa-Zoumé', 'Djougou',
-        'Djidja', 'Kandi', 'Kérou', 'Kouandé', 'Kétou', 'Lokossa', 'Malanville',
-        'Materi', 'Nikki', 'Ouidah', 'Parakou', 'Pobè', 'Sèmè-Kpodji', 'Sakété',
-        'Save', 'Tchaourou', 'Toviklin', 'Zagnanado', 'Zè', 'Akpro-Missérété', 'Allada',
-        'Anii', 'Atacora', 'Avrankou', 'Bassila', 'Bembérèkè', 'Comè', 'Cotonou',
-        'Glazoué', 'Houéyogbé', 'Ifangni', 'Kétou', 'Ouidah', 'Parakou', 'Pobè',
-        'Sèmè-Kpodji', 'Sakété', 'Save', 'Tchaourou', 'Zagnanado', 'Zè', 'Bonou',
-        'Dassa-Zoumé', 'Dangbo', 'Pobè', 'Tori-Bossito', 'Ouèssè', 'Ouèssè', 'Abomey',
-        'Abomey-Calavi', 'Adjohoun', 'Akassato', 'Bassila', 'Djougou', 'Matéri',
-        'Kouandé', 'Natitingou', 'N\'Dali', 'Parakou', 'Savalou', 'Tchaourou', 'Zogbodomè',
-        'Zogbodomey', 'Zogbodiomé',
+        'Alibori' => ['Banikoara', 'Gogounou', 'Kandi', 'Karimama', 'Malanville', 'Segbana'],
+        'Atacora' => ['Boukoumbé', 'Cobly', 'Kérou', 'Kouandé', 'Matéri', 'Natitingou', 'Ouaké', 'Péhunco', 'Tanguiéta', 'Toucountouna'],
+        'Atlantique' => ['Abomey-Calavi', 'Allada', 'Kpomassè', 'Ouidah', 'Sô-Ava', 'Toffo', 'Tori-Bossito', 'Zè'],
+        'Borgou' => ['Bembéréké', 'Kalalé', 'N’Dali', 'Nikki', 'Parakou', 'Pèrèrè', 'Sinendé', 'Tchaourou'],
+        'Collines' => ['Bantè', 'Dassa-Zoumè', 'Glazoué', 'Ouèssè', 'Savalou', 'Savè'],
+        'Donga' => ['Bassila', 'Copargo', 'Djougou', 'Ouaké'],
+        'Kouffo' => ['Aplahoué', 'Djakotomey', 'Dogbo', 'Klouékanmè', 'Lalo', 'Toviklin'],
+        'Littoral' => ['Cotonou'],
+        'Mono' => ['Athiémé', 'Bopa', 'Comé', 'Grand-Popo', 'Houéyogbé', 'Lokossa'],
+        'Ouémé' => ['Adjarra', 'Adjohoun', 'Aguégués', 'Akpro-Missérété', 'Avrankou', 'Bonou', 'Dangbo', 'Porto-Novo', 'Sèmè-Kpodji'],
+        'Plateau' => ['Ifangni', 'Kétou', 'Pobè', 'Sakété'],
+        'Zou' => ['Abomey', 'Agbangnizoun', 'Bohicon', 'Covè', 'Djidja', 'Ouinhi', 'Zagnanado', 'Zogbodomey'],
     ];
 
-    // Vérifie si l'ID de la commune est valide
-    if (!isset($communes[$communeId - 1])) {
-        abort(404);  // Si la commune n'existe pas, retourne une erreur 404
+
+    // Recherche de la commune dans les départements
+    $found = false;
+    foreach ($communes as $departement => $communeList) {
+        if (in_array(urldecode($commune), $communeList)) {
+            $found = true;
+            break;
+        }
     }
 
-    // Récupère le nom de la commune
-    $commune = $communes[$communeId - 1];
+    if (!$found) {
+        abort(404); // Commune non trouvée
+    }
 
-    // Trouve l'ID de la commune suivante
-    $nextCommuneId = $communeId < count($communes) ? $communeId + 1 : null;
-
-    // Retourne la vue avec les variables nécessaires
-    return view('admin.affichageCommunes', compact('commune', 'communeId', 'nextCommuneId', 'communes'));
+    // Retourne la vue avec la bonne commune
+    return view('admin.affichageCommunes', compact('commune'));
 }
 
+
+ // Afficher les prévisions envoyées pour une commune
+ public function showPrevisions($commune)
+ {
+     // Récupérer les prévisions pour la commune (simulé ici)
+     // Tu devras adapter cette partie selon la façon dont tu stockes et récupères les prévisions
+     $previsions = $this->getPrevisionsByCommune($commune);
+
+     // Retourner la vue avec les données
+     return view('admin.previsionsEnvoyesCommunes
+     ', compact('commune', 'previsions'));
+ }
+
+ // Afficher le formulaire pour envoyer une prévision à une commune
+ public function sendPrevision($commune)
+ {
+     // Récupérer des données ou préparer des informations nécessaires à l'envoi d'une prévision
+     // (par exemple, récupérer des modèles de prévisions, des options, etc.)
+     return view('admin.envoyerPrevisions', compact('commune'));
+ }
+
+ // Méthode simulée pour récupérer les prévisions d'une commune
+ private function getPrevisionsByCommune($commune)
+ {
+     // Cette méthode est à personnaliser en fonction de ta logique
+     // Exemple : récupération des prévisions dans une base de données
+     // return Prevision::where('commune', $commune)->get();
+
+     // Simulation de prévisions pour cette démonstration
+     return [
+         'Prévision 1 pour ' . $commune,
+         'Prévision 2 pour ' . $commune,
+         'Prévision 3 pour ' . $commune,
+     ];
+ }
 
 
 }

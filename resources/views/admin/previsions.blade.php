@@ -201,28 +201,7 @@
                                 </span>
                                 <img class="img-profile rounded-circle" src="{{ asset('images/logo1.ico') }}">
                             </h3>
-                            <!-- Dropdown - User Information -->
-                            <div class="shadow dropdown-menu dropdown-menu-right animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="mr-2 text-gray-400 fas fa-user fa-sm fa-fw"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="mr-2 text-gray-400 fas fa-cogs fa-sm fa-fw"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="mr-2 text-gray-400 fas fa-list fa-sm fa-fw"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal"
-                                    data-target="#logoutModal">
-                                    <i class="mr-2 text-gray-400 fas fa-sign-out-alt fa-sm fa-fw"></i>
-                                    Logout
-                                </a>
-                            </div>
+
                         </li>
 
                     </ul>
@@ -303,11 +282,17 @@
                                         @foreach ($communes as $index => $commune)
                                             <div
                                                 class="flex items-center justify-between p-4 rounded-lg shadow-sm bg-gray-50 hover:shadow-md">
-                                                <a href="/admin/commune/n/{{ $index + 1 }}"
+                                                {{-- <a href="/admin/commune/n/{{ $index + 1 }}"
+                                                    class="flex items-center text-lg text-blue-600 hover:text-blue-800">
+                                                    <i class="mr-3 text-blue-600 fas fa-city"></i>
+                                                    {{ $commune }}
+                                                </a> --}}
+                                                <a href="{{ route('admin.commune.show', ['commune' => urlencode($commune)]) }}"
                                                     class="flex items-center text-lg text-blue-600 hover:text-blue-800">
                                                     <i class="mr-3 text-blue-600 fas fa-city"></i>
                                                     {{ $commune }}
                                                 </a>
+
 
                                                 <!-- Task Status for Commune -->
                                                 @php

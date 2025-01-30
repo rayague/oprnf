@@ -14,7 +14,7 @@
     <title>OPRNF</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}")}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -56,37 +56,12 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Accueil -->
-            <li class="nav-item ">
-                <a class="nav-link" href="{{ route('admin.dashboard') }}">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('commune.dashboard') }}">
                     <i class="fas fa-fw fa-home"></i>
                     <span class="font-weight-bold">ACCUEIL</span>
                 </a>
             </li>
-
-
-            {{-- <!-- Nav Item - Cadre -->
-            <li class="bg-green-500 nav-item">
-                <a class="nav-link" href="{{ route('admin.cadrage') }}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span class="font-weight-bold">CADRAGE</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Hypothèses -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.hypotheses') }}">
-                    <i class="fas fa-fw fa-chart-line"></i>
-                    <span class="font-weight-bold">HYPOTHESES</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Solver -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.solver') }}">
-                    <i class="fas fa-fw fa-cogs"></i>
-                    <span class="font-weight-bold">SOLVER</span>
-                </a>
-            </li> --}}
 
             <!-- Nav Item - Recettes -->
             <li class="nav-item">
@@ -211,56 +186,34 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-
-                    <!-- Content Row -->
-                    <div class="container mt-10">
-                        <h3 class="mb-4 text-3xl font-semibold text-center">Détails de la commune :
-                            {{ $commune }}</h3>
-
-                        <!-- Message de bienvenue -->
-                        <div class="mb-6 text-center">
-                            <p class="text-lg text-gray-700">
-                                Bienvenue à <span class="font-semibold text-indigo-600">{{ $commune }}</span> !
-                                Cette page vous permet
-                                de gérer les prévisions et d'afficher des informations liées à cette commune.
-                            </p>
-                        </div>
-
-                        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-                            <!-- Voir les prévisions envoyées par la commune -->
-                            <div
-                                class="flex flex-col items-center justify-between p-6 space-y-4 bg-white rounded-lg shadow-lg">
-                                <div
-                                    class="flex items-center justify-center p-3 text-white bg-indigo-600 rounded-full">
-                                    <i class="text-xl fas fa-eye"></i>
+                    <div class="mt-5 row">
+                        <!-- Début de la première colonne -->
+                        <div class="mb-4 col-lg-6">
+                            <div class="shadow-sm card">
+                                <div class="card-header">
+                                    <h5 class="font-weight-bold">Prévision du mois pour {{ $commune }}</h5>
                                 </div>
-                                <h4 class="text-xl font-semibold text-gray-800">Voir les prévisions envoyées</h4>
-                                <p class="text-center text-gray-600">Cliquez pour voir les prévisions que cette commune
-                                    a envoyées.</p>
-                                <a href="
-                                {{ route('admin.pagePrevisions', ['commune' => $commune]) }}
-                                 "
-                                    class="px-4 py-2 mt-4 text-lg text-white transition duration-200 bg-indigo-600 rounded-lg hover:bg-indigo-700">Voir
-                                    les prévisions</a>
-                            </div>
+                                <div class="card-body">
+                                    <p class="mb-4 card-text">Ce document contient les prévisions à envoyer pour le
+                                        mois en
+                                        cours.
+                                        Il est important que vous téléchargiez et remplissiez ce document pour compléter
+                                        les démarches administratives liées aux prévisions.</p>
 
-                            <!-- Envoyer une prévision à la commune -->
-                            <div
-                                class="flex flex-col items-center justify-between p-6 space-y-4 bg-white rounded-lg shadow-lg">
-                                <div class="flex items-center justify-center p-3 text-white bg-green-600 rounded-full">
-                                    <i class="text-xl fas fa-paper-plane"></i>
+                                    <!-- Bouton de téléchargement du document -->
+                                    <a href="
+                                    {{-- {{ route('admin.downloadPrevision', ['commune' => $communeId]) }} --}}
+                                     "
+                                        class="btn btn-success">
+                                        <i class="fas fa-download"></i> Télécharger la prévision
+                                    </a>
                                 </div>
-                                <h4 class="text-xl font-semibold text-gray-800">Envoyer une prévision</h4>
-                                <p class="text-center text-gray-600">Cliquez ici pour envoyer une nouvelle prévision à
-                                    cette commune.</p>
-                                <a href="
-                                {{ route('admin.envoyer-prevision', ['commune' => $commune]) }}
-                                 "
-                                    class="px-4 py-2 mt-4 text-lg text-white transition duration-200 bg-green-600 rounded-lg hover:bg-green-700">Envoyer
-                                    une prévision</a>
                             </div>
                         </div>
+                        <!-- Fin de la première colonne -->
+
                     </div>
+
 
 
                 </div>

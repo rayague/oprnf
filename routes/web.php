@@ -33,7 +33,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/liste', [AdminController::class,'listeUtilisateurs'])->name('listeUtilisateurs');
     Route::post('/valider-recette', [AdminController::class, 'validerRecette'])->name('validerRecette');
     Route::get('/selections-recettes', [AdminController::class, 'selectionsView'])->name('selectionsView');
-    Route::get('/admin/commune/n/{communeId}', [AdminController::class, 'show'])->name('commune.show');
+    // Route::get('/admin/commune/n/{communeId}', [AdminController::class, 'show'])->name('commune.show');
+    Route::get('/admin/commune/{commune}', [AdminController::class, 'show'])->name('admin.commune.show');
+
+    Route::get('/admin/{commune}/previsions', [AdminController::class, 'showPrevisions'])->name('admin.pagePrevisions');
+Route::get('/admin/{commune}/envoyer-prevision', [AdminController::class, 'sendPrevision'])->name('admin.envoyer-prevision');
 
 
     // Routes de la commune
