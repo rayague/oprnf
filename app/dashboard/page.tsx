@@ -3,10 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Dashboard() {
-  const [activeTab, setActiveTab] = useState('accueil');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -25,7 +26,7 @@ export default function Dashboard() {
                 priority
               />
               <Image
-                src="/images/logo3.png"
+                src="/images/logo2.png"
                 alt="Logo OPRNF"
                 width={64}
                 height={64}
@@ -99,36 +100,27 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex overflow-x-auto hide-scrollbar">
             <div className="flex space-x-8 min-w-max">
-              <button
-                onClick={() => setActiveTab('accueil')}
-                className={`py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap ${
-                  activeTab === 'accueil'
-                    ? 'border-sky-500 text-sky-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
-              >
+              <Link href="/dashboard" className={`py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap ${
+                pathname === '/dashboard' && !pathname.includes('?')
+                  ? 'border-sky-500 text-sky-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}>
                 Accueil
-              </button>
-              <button
-                onClick={() => setActiveTab('menu')}
-                className={`py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap ${
-                  activeTab === 'menu'
-                    ? 'border-sky-500 text-sky-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
-              >
+              </Link>
+              <Link href="/dashboard/menu" className={`py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap ${
+                pathname === '/dashboard/menu'
+                  ? 'border-sky-500 text-sky-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}>
                 Menu
-              </button>
-              <button
-                onClick={() => setActiveTab('historique')}
-                className={`py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap ${
-                  activeTab === 'historique'
-                    ? 'border-sky-500 text-sky-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
-              >
+              </Link>
+              <Link href="/dashboard/historique" className={`py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap ${
+                pathname === '/dashboard/historique'
+                  ? 'border-sky-500 text-sky-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}>
                 Historique
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -137,137 +129,59 @@ export default function Dashboard() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow">
-          {activeTab === 'accueil' && (
-            <div className="p-6">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Tableau de bord</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {/* Carte Prévisions en cours */}
-                <div className="bg-sky-50 rounded-lg p-6 border border-sky-100">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-lg font-medium text-sky-900">Prévisions en cours</h3>
-                      <p className="text-3xl font-bold text-sky-600 mt-2">3</p>
-                    </div>
-                    <div className="p-3 bg-sky-100 rounded-full">
-                      <svg className="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                      </svg>
-                    </div>
-                  </div>
-                  <p className="text-sm text-sky-600 mt-2">Prévisions en attente de validation</p>
+          <div className="p-4 sm:p-6">
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-4 sm:p-6 lg:p-8 border border-green-100">
+                <div className="text-center mb-6 sm:mb-8">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">Documentation OPRNF</h2>
+                  <p className="text-base sm:text-lg text-gray-600">Guide d'utilisation et documentation technique</p>
+                </div>
+                
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-6 mb-6 sm:mb-8">
+                  <p className="text-gray-700 leading-relaxed text-justify text-sm sm:text-base">
+                    Le présent document a été réalisé grâce à l'appui technique et financier du Projet 
+                    Réforme des Finances publiques pour l'atteinte des ODD et le Renforcement de la 
+                    Mobilisation des recettes de l'Etat (ReFORME) dans le cadre de la Coopération entre 
+                    la République du Bénin, la République Fédérale d'Allemagne et l'Union Européenne.
+                  </p>
                 </div>
 
-                {/* Carte Prévisions validées */}
-                <div className="bg-green-50 rounded-lg p-6 border border-green-100">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-lg font-medium text-green-900">Prévisions validées</h3>
-                      <p className="text-3xl font-bold text-green-600 mt-2">12</p>
+                <div className="bg-gray-50 rounded-xl p-4 sm:p-6 mb-6 sm:mb-8">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4 text-center">Coordonnées du Bureau de la GIZ</h3>
+                  <div className="grid grid-cols-1 gap-4 text-center">
+                    <div className="space-y-2">
+                      <p className="text-gray-700 font-medium text-sm sm:text-base">Bureau de la GIZ à Cotonou</p>
+                      <p className="text-gray-600 text-xs sm:text-sm">08 BP 1132 Tri Postal - Cotonou – République du Bénin</p>
                     </div>
-                    <div className="p-3 bg-green-100 rounded-full">
-                      <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
+                    <div className="space-y-2">
+                      <p className="text-gray-700 font-medium text-sm sm:text-base">Contact</p>
+                      <p className="text-gray-600 text-xs sm:text-sm">T + 229 21 30 81 28 – F + 229 21 31 13 35</p>
+                      <p className="text-gray-600 text-xs sm:text-sm">E gizbenin@giz.de - I www.giz.de</p>
                     </div>
                   </div>
-                  <p className="text-sm text-green-600 mt-2">Prévisions approuvées</p>
                 </div>
 
-                {/* Carte Montant total */}
-                <div className="bg-purple-50 rounded-lg p-6 border border-purple-100">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-lg font-medium text-purple-900">Montant total</h3>
-                      <p className="text-3xl font-bold text-purple-600 mt-2">15.8M</p>
-                    </div>
-                    <div className="p-3 bg-purple-100 rounded-full">
-                      <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                  </div>
-                  <p className="text-sm text-purple-600 mt-2">FCFA</p>
+                <div className="text-center">
+                  <button 
+                    onClick={() => {
+                      // Simulation du téléchargement du PDF
+                      const link = document.createElement('a');
+                      link.href = '/GUIDE_OPRNF_Provosoire.pdf';
+                      link.download = 'GUIDE_OPRNF_Provosoire.pdf';
+                      link.click();
+                    }}
+                    className="inline-flex items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-xl hover:from-green-700 hover:to-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-300 font-semibold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] w-full sm:w-auto"
+                  >
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span className="hidden sm:inline">Télécharger la Documentation PDF</span>
+                    <span className="sm:hidden">Télécharger PDF</span>
+                  </button>
                 </div>
               </div>
             </div>
-          )}
-
-          {activeTab === 'menu' && (
-            <div className="p-6">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Menu</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-                <Link href="/dashboard/recettes" className="block">
-                  <div className="bg-white border border-gray-200 rounded-lg p-6 hover:border-sky-500 hover:shadow-lg transition-all cursor-pointer">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h3 className="text-xl font-medium text-gray-900">Recettes</h3>
-                        <p className="text-sm text-gray-500 mt-2">Gérer les recettes et les prévisions de revenus</p>
-                      </div>
-                      <div className="p-3 bg-sky-100 rounded-full">
-                        <svg className="w-8 h-8 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-
-                <Link href="/dashboard/hypotheses" className="block">
-                  <div className="bg-white border border-gray-200 rounded-lg p-6 hover:border-green-500 hover:shadow-lg transition-all cursor-pointer">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h3 className="text-xl font-medium text-gray-900">Hypothèses</h3>
-                        <p className="text-sm text-gray-500 mt-2">Gérer les hypothèses et les paramètres de prévision</p>
-                      </div>
-                      <div className="p-3 bg-green-100 rounded-full">
-                        <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'historique' && (
-            <div className="p-6">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Historique des opérations</h2>
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Date
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Type
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Montant
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Statut
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    <tr className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-15</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Prévision</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1,500,000 FCFA</td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                          Validée
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
+          </div>
         </div>
       </main>
 

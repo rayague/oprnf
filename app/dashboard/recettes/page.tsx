@@ -56,22 +56,22 @@ export default function RecettesPage() {
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-4">
                             <Image
-                                src="/images/logo.png"
-                                alt="Logo"
+                                src="/images/logo5.png"
+                                alt="Logo DGTCP"
                                 width={40}
                                 height={40}
                                 className="h-10 w-auto"
                             />
                             <Image
-                                src="/images/logo-text.png"
-                                alt="Logo Text"
+                                src="/images/logo2.png"
+                                alt="Logo OPRNF"
                                 width={200}
                                 height={40}
                                 className="h-10 w-auto"
                             />
                         </div>
                         <Link
-                            href="/dashboard"
+                            href="/dashboard?tab=menu"
                             className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                         >
                             <svg className="mr-2 h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
